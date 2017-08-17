@@ -15,10 +15,14 @@
 static int		convert_file(int fd)
 {
 	char	*line;
+	t_asm	data;
 
 	line = NULL;
+	data.conv = NULL;
 	while (get_next_line(fd, &line) > 0)
-		ft_putendl(line);
+	{
+		
+	}
 	return (1);
 }
 

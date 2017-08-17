@@ -16,5 +16,16 @@
 # include "op.h"
 # include "libft/libft.h"
 
+typedef struct		s_conv
+{
+	char			*line;
+	unsigned char	*data;
+}					t_conv;
+
+typedef struct		s_asm
+{
+	struct s_conv	*conv;
+}					t_asm;
+
 int		ft_fileok(char *filename);
 #endif
