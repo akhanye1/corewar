@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/17 10:41:57 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/17 10:59:26 by akhanye          ###   ########.fr       */
+/*   Updated: 2017/08/17 12:29:13 by akhanye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ int		ft_fileok(char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		return (0);
-	return (1);
+	return (fd);
 }
