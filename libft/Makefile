@@ -6,7 +6,7 @@
 #    By: akhanye <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/30 10:25:20 by akhanye           #+#    #+#              #
-#    Updated: 2017/08/22 07:21:02 by jngoma           ###   ########.fr        #
+#    Updated: 2017/08/22 08:28:45 by jngoma           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -172,9 +172,9 @@ OBJ		= 	ft_isalnum.o	\
 			ft_inarrayc.o	\
 			ft_inarray.o		\
 			ft_freestrsplit.o\
-			$(INCL)ft_strdefix.o\
-			$(INCL)ft_strshrink.o\
-			$(INCL)ft_strdesplit.o\
+			ft_strdefix.o\
+			ft_strshrink.o\
+			ft_strdesplit.o\
 
 FLAGS	=	-Wall -Wextra -Werror
 
