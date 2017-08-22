@@ -17,7 +17,7 @@ unsigned char		ft_get_encoding(char *str)
 	int				i;
 	int				j;
 	char			**grid;
-	unsigned char	ret[9];
+	char			ret[9];
 
 	i = -1;
 	j = 0;
