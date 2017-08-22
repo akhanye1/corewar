@@ -12,17 +12,7 @@
 
 #include "ft_corewar.h"
 
-void  ft_or(*t_conv)
+unsigned char	*ft_or(char *line)
 {
-	int					i;
-	unsingned char		*temp;
-
-	i = 1;
-	if ((t_conv->line[0] != 'o' || t_conv->line[0] != 'O')
-			&& t_conv->line[1] != 'r')
-			return ;
-	while (t_conv->line[++i] != '\0')
-	{
-		ft_strsplit(line, ',');
-	}
+	
 }

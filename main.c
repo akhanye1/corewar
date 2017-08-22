@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 21:04:42 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/19 16:34:45 by jngoma           ###   ########.fr       */
+/*   Updated: 2017/08/19 16:49:35 by jngoma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static void		write_to_cor(t_asm *data)
 	//write_binary(line, sizeof(unsigned int), lfd);
 	write_numbers(line, sizeof(unsigned int), lfd);
 	line = (unsigned char*)data->header.prog_name;
-	write_binary(line, PROG_NAME_LENGTH + 4, lfd);
+	write_binary(line, PROG_NAME_LENGTH, lfd);
 	line = (unsigned char*)(&data->header.prog_size);
 	write_numbers(line, sizeof(unsigned int), lfd);
 	line = (unsigned char*)data->header.comment;
