@@ -6,11 +6,11 @@
 /*   By: jngoma <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 18:52:40 by jngoma            #+#    #+#             */
-/*   Updated: 2017/08/21 18:53:36 by jngoma           ###   ########.fr       */
+/*   Updated: 2017/08/22 07:23:21 by jngoma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
 int		spaceless_len(char *str)
 {

@@ -6,11 +6,11 @@
 /*   By: jngoma <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 18:54:13 by jngoma            #+#    #+#             */
-/*   Updated: 2017/08/21 18:57:16 by jngoma           ###   ########.fr       */
+/*   Updated: 2017/08/22 07:23:06 by jngoma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
 char	*ft_populate(char **grid, char *str, int c)
 {

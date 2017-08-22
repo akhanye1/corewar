@@ -6,11 +6,11 @@
 /*   By: jngoma <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 18:51:44 by jngoma            #+#    #+#             */
-/*   Updated: 2017/08/21 18:52:20 by jngoma           ###   ########.fr       */
+/*   Updated: 2017/08/22 07:22:51 by jngoma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
 char	*ft_defix(char *str, int n)
 {
