@@ -6,7 +6,7 @@
 #    By: akhanye <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/30 10:25:20 by akhanye           #+#    #+#              #
-#    Updated: 2017/08/17 10:47:17 by akhanye          ###   ########.fr        #
+#    Updated: 2017/08/21 10:34:20 by akhanye          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,9 @@ ASSEMBLER	=	asm
 VIRTUAL		=	push_swap
 
 SRC_ASM		=	main.c					\
-				ft_fileok.c
+				ft_fileok.c				\
+				ft_write.c				\
+				convert.c
 
 #SRC_PUSHS	= 	push_s.c				\
 				dosort.c
