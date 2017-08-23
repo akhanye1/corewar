@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/29 12:27:08 by akhanye           #+#    #+#             */
-/*   Updated: 2017/07/12 08:17:54 by akhanye          ###   ########.fr       */
+/*   Updated: 2017/08/22 07:24:37 by jngoma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,8 @@ void				ft_memdel(void **ap);
 int					ft_inarray(char *search, char **array);
 int					ft_inarrayc(char search, char **array);
 void				ft_freestrsplit(char **str);
+char 				*ft_strdefix(char *str, int n);
+char 				*ft_strshrink(char *str);
+char 				*ft_strdesplit(char **grid, int c);
 
 #endif
