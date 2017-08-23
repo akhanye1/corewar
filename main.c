@@ -41,7 +41,7 @@ static int		get_header(int fd, t_asm *data)
 	data->header.magic = 0xea83f3; 
 	ft_bzero(data->header.prog_name, PROG_NAME_LENGTH + 1);
 	ft_bzero(data->header.comment, COMMENT_LENGTH + 1);
-	data->header.prog_size = 180;
+	data->header.prog_size = 989;
 	ex = 0;
 	len = 0;
 	while (get_next_line(fd, &line) > 0 && ex < 2)
@@ -79,7 +79,8 @@ static void		write_to_cor(t_asm *data)
 	int				lfd;
 	unsigned char	*line;
 
-	if ((lfd = open("test.cor", O_CREAT | O_WRONLY)) == -1)
+	if ((lfd = open("test.cor", O_CREAT | O_WRONLY, S_IRWXU |
+					S_IRGRP | S_IROTH)) == -1)
 	{
 		ft_putendl("File not created");
 		return ;
@@ -88,7 +89,7 @@ static void		write_to_cor(t_asm *data)
 	//write_binary(line, sizeof(unsigned int), lfd);
 	write_numbers(line, sizeof(unsigned int), lfd);
 	line = (unsigned char*)data->header.prog_name;
-	write_binary(line, PROG_NAME_LENGTH + 4, lfd);
+	write_binary(line, PROG_NAME_LENGTH, lfd);
 	line = (unsigned char*)(&data->header.prog_size);
 	write_numbers(line, sizeof(unsigned int), lfd);
 	line = (unsigned char*)data->header.comment;
