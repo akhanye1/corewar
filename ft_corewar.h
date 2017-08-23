@@ -6,11 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 23:40:00 by akhanye           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2017/08/23 09:46:27 by akhanye          ###   ########.fr       */
-=======
-/*   Updated: 2017/08/21 11:11:44 by akhanye          ###   ########.fr       */
->>>>>>> origin/development
+/*   Updated: 2017/08/23 09:55:56 by akhanye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +30,7 @@ typedef struct		s_label
 	char			*name;
 	int				value;
 	int				index;
-}					t_label
+}					t_label;
 
 typedef struct		s_asm
 {
@@ -42,13 +38,9 @@ typedef struct		s_asm
 	struct header_s	header;
 }					t_asm;
 
-<<<<<<< HEAD
 int				ft_fileok(char *filename);
 unsigned char	ft_get_opcode(char *str);
-=======
-int		ft_fileok(char *filename);
 void	write_to_cor(t_asm *data);
 int		convert_file(int fd);
 
->>>>>>> origin/development
 #endif
