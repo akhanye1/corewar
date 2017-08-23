@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 23:40:00 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/19 14:38:16 by jngoma           ###   ########.fr       */
+/*   Updated: 2017/08/23 09:46:27 by akhanye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ typedef struct		s_asm
 	struct header_s	header;
 }					t_asm;
 
-int		ft_fileok(char *filename);
+int				ft_fileok(char *filename);
+unsigned char	ft_get_opcode(char *str);
 #endif

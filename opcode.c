@@ -6,7 +6,7 @@
 /*   By: mmayibo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 13:30:27 by mmayibo           #+#    #+#             */
-/*   Updated: 2017/08/22 16:04:49 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/23 09:49:00 by akhanye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,11 @@ unsigned char		check_first_instructs(char *str)
 		opcode = 8;
 	return (opcode);
 }
+
+/**
+ ** send only the code to this function not the entire line
+ ** for example (live, or)
+**/
 
 unsigned char		ft_get_opcode(char *str)
 {
