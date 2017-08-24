@@ -6,7 +6,7 @@
 /*   By: mmayibo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 13:30:27 by mmayibo           #+#    #+#             */
-/*   Updated: 2017/08/23 09:49:00 by akhanye          ###   ########.fr       */
+/*   Updated: 2017/08/24 13:35:23 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ unsigned char		check_sec_instructs(char *str)
 {
 	unsigned char	opcode;
 
-	opcode = -1;
+	opcode = 0;
 	if (ft_strequ(str, "zjmp"))
 		opcode = 9;
 	else if (ft_strequ(str, "ldi"))
@@ -40,7 +40,7 @@ unsigned char		check_first_instructs(char *str)
 {
 	unsigned char	opcode;
 
-	opcode = -1;
+	opcode = 0;
 	if (ft_strequ(str, "live"))
 		opcode = 1;
 	else if (ft_strequ(str, "ld"))

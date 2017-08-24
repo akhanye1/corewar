@@ -30,6 +30,22 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+typedef struct		s_fd
+{
+    int				fd;
+    char			*store;
+    struct s_fd		*next;
+}					t_fd;
+
+char				*ft_strcuthead(char **s, int c);
+void				ft_addnbr(int **arr, int a);
+int					ft_abs(int a);
+int					get_next_line(const int fd, char **line);
+void				destroy_fd(const int fd, t_fd **lst);
+void				**ft_destroy_2d(void **grid);
+int					ft_items_in_grid(void **grid);
+int					ft_contains(char *s, char c);
+int					ft_contains_str(const char **argv, const char *str, int l);
 int					ft_htoi(const char *nptr);
 int					ft_getlines(char *filename);
 int					ft_abs(int num);

@@ -94,6 +94,16 @@ SRC		= 	$(INCL)ft_isalnum.c	\
 			$(INCL)ft_strdefix.c\
 			$(INCL)ft_strshrink.c\
 			$(INCL)ft_strdesplit.c\
+			$(INCL)ft_strcuthead.c\
+ 			$(INCL)ft_addnbr.c\
+ 		 	$(INCL)destroy_fd.c\
+			$(INCL)ft_is_number.c\
+			$(INCL)ft_contains.c\
+    			$(INCL)ft_destroy_2d.c\
+			$(INCL)ft_htoi.c\
+ 			$(INCL)ft_items_in_grid.c\
+ 			$(INCL)ft_contains_str.c\
+ 			$(INCL)ft_out_of_int_range.c
 
 
 OBJ		= 	ft_isalnum.o	\
@@ -175,6 +185,18 @@ OBJ		= 	ft_isalnum.o	\
 			ft_strdefix.o\
 			ft_strshrink.o\
 			ft_strdesplit.o\
+			ft_strcuthead.o\
+ 			ft_addnbr.o\
+ 		 	destroy_fd.o\
+			ft_is_number.o\
+			ft_contains.o\
+    			ft_destroy_2d.o\
+			ft_htoi.o\
+ 			ft_items_in_grid.o\
+ 			ft_contains_str.o\
+ 			ft_out_of_int_range.o
+
+			
 
 FLAGS	=	-Wall -Wextra -Werror
 
