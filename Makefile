@@ -6,7 +6,7 @@
 #    By: akhanye <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/30 10:25:20 by akhanye           #+#    #+#              #
-#    Updated: 2017/08/23 09:53:16 by akhanye          ###   ########.fr        #
+#    Updated: 2017/08/24 12:07:26 by mmayibo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,12 @@ SRC_ASM		=	main.c					\
 				ft_fileok.c				\
 				opcode.c				\
 				ft_write.c				\
-				convert.c
+				convert.c				\
+				ft_sti.c				\
+				ft_params.c				\
+				ft_decoding.c			\
+				ft_get_encoding.c		\
+				numberconversion.c
 
 #SRC_PUSHS	= 	push_s.c				\
 				dosort.c
