@@ -3,34 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: gtshekel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/30 13:24:06 by akhanye           #+#    #+#             */
-/*   Updated: 2017/06/10 14:33:01 by akhanye          ###   ########.fr       */
+/*   Created: 2017/06/01 11:03:14 by gtshekel          #+#    #+#             */
+/*   Updated: 2017/08/24 14:09:31 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-char		*ft_strtrim(const char *str)
+char	*ft_strtrim(char const *s)
 {
-	int		b;
-	int		e;
-	char	*tmp;
+	char			*ret;
+	size_t			len;
+	unsigned int	start;
 
-	if (str == NULL)
+	if (!s)
 		return (NULL);
-	b = ft_skipempty(str);
-	e = ft_lastal(str) + 1;
-	tmp = (char *)malloc(sizeof(char) * ((e - b) + 1));
-	if (tmp == NULL)
-		return (NULL);
-	if (e == 1)
+	len = ft_strlen(s);
+	start = 0;
+	while (--len)
 	{
-		tmp[0] = '\0';
-		return (tmp);
+		if (s[len] != ' ' && s[len] != '\t' && s[len] != '\n')
+		{
+			len++;
+			break ;
+		}
 	}
-	ft_strcpysub(tmp, str, b, ((e - b)));
-	tmp[(e - b)] = '\0';
-	return (tmp);
+	while (s[start] == ' ' || s[start] == '\t' || s[start] == '\n')
+		start++;
+	if (!(ret = ft_strnew(len > start ? len - start : 0)))
+		return (NULL);
+	ret = ft_strsub(s, start > len ? 0 : start, len > start ? len - start : 0);
+	return (ret);
 }

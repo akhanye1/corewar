@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 10:30:52 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/24 13:03:12 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/24 17:16:55 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,29 +75,6 @@ static int		add_line(t_conv **data, char *line)
 	return (1);
 }
 
-/*static int		get_instructions(int fd, t_asm *data)
-{
-	t_conv *iter;
-	char	*line;
-
-	line = NULL;
-	while (get_next_line(fd, &line) > 0)
-	{
-		ft_putendl(line);
-		add_line(&(data->line), line);
-	}
-	close(fd);
-	if (!data->line)
-		return (0);
-	iter = data->line;
-	while (iter)
-	{
-		ft_putendl(iter->line);
-		iter = iter->next;
-	}
-	return (1);
-}*/
-
 static int		get_file(int fd, t_asm *data)
 {
 	char 	*line;
@@ -120,21 +97,40 @@ static int		get_file(int fd, t_asm *data)
 	return (1);
 }
 
+int update_conv(t_conv *line)
+{
+	ft_putendl(line->line);
+	return (0);
+}
+
 int				convert_file(int fd)
 {
 	char		*line;
 	t_asm		data;
-	t_conv		*iter;
+	t_label		*labels;
+	int			total_bytes;
 
+	total_bytes = PROG_NAME_LENGTH + COMMENT_LENGTH;
 	line = NULL;
 	data.line = NULL;
+	labels = NULL;
 	if (!get_file(fd, &data))
 		return (0);
-	iter = data.line;
-	while (iter)
+	while (data.line)
 	{
-		ft_putendl(iter->line);
-		iter = iter->next;
+		if (ft_is_label_only(data.line->line) || ft_contains_label(data.line->line))
+		{
+			if (labels == NULL)
+				labels = create_label(&data.line->line, total_bytes);
+			else
+				add_label(&labels, create_label(&data.line->line, total_bytes));
+			if (ft_strequ(data.line->line, ""))
+				data.line = data.line->next;
+		}
+		update_conv(&data.line);
+		//getbytes will run in here as one of the updating functions;
+		total_bytes += data.line->bytes;
+		data.line = data.line->next;
 	}
 	//get_instructions(fd, &data);
 	write_to_cor(&data);

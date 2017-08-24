@@ -1,54 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_htoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: gtshekel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/30 11:36:52 by akhanye           #+#    #+#             */
-/*   Updated: 2017/07/02 01:44:13 by akhanye          ###   ########.fr       */
+/*   Created: 2017/08/08 13:52:43 by gtshekel          #+#    #+#             */
+/*   Updated: 2017/08/24 14:10:19 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
+#include <math.h>
 
-static int	get_num(const char *nptr, int i)
+int		ft_htoi(const char *s)
 {
-	int num;
-	int l;
+	unsigned long int	ret;
+	int					index;
 
-	num = 1;
-	while (nptr[i] != '\0')
+	index = 0;
+	ret = 0;
+	while ((int)ft_strlen(s) - (++index) >= 0)
 	{
-		if ((ft_tolower(nptr[i]) >= 'a' &&
-					ft_tolower(nptr[i]) <= 'f') || ft_isdigit(nptr[i]) != 0)
-		{
-			if (ft_isalpha(ft_tolower(nptr[i])) != 0)
-				l = (ft_tolower(nptr[i]) - 'a') + 10;
-			else
-				l = nptr[i] - '0';
-			if (l == 0)
-				l = 1;
-		}
-		num = num * l;
-		i++;
-	}
-	return (num);
-}
-
-int			ft_htoi(const char *nptr)
-{
-	int		i;
-	int		l;
-
-	i = ft_skipempty(nptr);
-	if (ft_strchr(nptr + i, 'x') != NULL || ft_strchr(nptr + i, 'X') != NULL)
-	{
-		if (ft_strchr(nptr + i, 'x') != NULL)
-			l = ft_strchr(nptr + i, 'x') - nptr;
+		if (s[index - 1] == 'a' || s[index - 1] == 'A')
+			ret += 10 * (pow(16, (ft_strlen(s) - index)));
+		else if (s[index - 1] == 'b' || s[index - 1] == 'B')
+			ret += 11 * (pow(16, (ft_strlen(s) - index)));
+		else if (s[index - 1] == 'c' || s[index - 1] == 'C')
+			ret += 12 * (pow(16, (ft_strlen(s) - index)));
+		else if (s[index - 1] == 'd' || s[index - 1] == 'D')
+			ret += 13 * (pow(16, (ft_strlen(s) - index)));
+		else if (s[index - 1] == 'e' || s[index - 1] == 'E')
+			ret += 14 * (pow(16, (ft_strlen(s) - index)));
+		else if (s[index - 1] == 'f' || s[index - 1] == 'F')
+			ret += 15 * (pow(16, (ft_strlen(s) - index)));
+		else if (ft_isdigit(s[index - 1]))
+			ret += (s[index - 1] - '0') * (pow(16, (ft_strlen(s) - index)));
 		else
-			l = ft_strchr(nptr + i, 'X') - nptr;
-		i += l;
+			return (-1);
 	}
-	return (get_num(nptr, i));
+	return (ret > 9223372036854775807 ? -1 : ret);
 }
