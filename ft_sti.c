@@ -6,7 +6,7 @@
 /*   By: mmayibo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 09:32:02 by mmayibo           #+#    #+#             */
-/*   Updated: 2017/08/24 13:06:41 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/24 17:09:02 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ static void	fill_params(t_conv *instruct, char **split, char *decode)
 	{
 		if (decode[i] == '1')
 		{
-			instruct->b_param[i] = T_REG;
+			instruct->b_param[i] = 1;
 			instruct->param[i] = ft_get_reg(split[i]);
 		}
 		else if (decode[i] == '2')
 		{
-			instruct->b_param[i] = T_DIR;
+			instruct->b_param[i] = IND_SIZE;
 			instruct->param[i] = ft_get_dir(split[i]);
 		}
 		else if (decode[i] == '3')
 		{
-			instruct->b_param[i] = T_IND;
+			instruct->b_param[i] = IND_SIZE;
 			instruct->param[i] = ft_get_ind(split[i]);
 		}
 		i++;
