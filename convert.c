@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 10:30:52 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/24 17:28:47 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/24 17:40:30 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,13 @@ static int		get_file(int fd, t_asm *data)
 	}
 	return (1);
 }
-/*
+
 int update_conv(t_conv *line)
 {
 	ft_putendl(line->line);
 	return (0);
 }
-*/
+
 int				convert_file(int fd)
 {
 	char		*line;
@@ -127,7 +127,7 @@ int				convert_file(int fd)
 			if (ft_strequ(data.line->line, ""))
 				data.line = data.line->next;
 		}
-		//update_conv(&data.line);
+		update_conv(data.line);
 		//getbytes will run in here as one of the updating functions;
 		total_bytes += data.line->bytes;
 		data.line = data.line->next;
