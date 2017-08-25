@@ -12,19 +12,40 @@
 
 #include "../libft.h"
 
+int		spaceless_len(char *str)
+{
+	int		i;
+
+	i = -1;
+	while (str[++i] != '\0')
+	{
+		if (str[i] == 32)
+			i--;
+		i++;
+	}
+	return (i);
+}
+
 char	*ft_strdefix(char *str, int c)
 {
-	char	*newstr;
 	int		i;
 	int		j;
 	int		len;
+	char	*newstr;
 
 	i = -1;
-	while (str[++i] && str[i] != c);
 	j = -1;
-	len = ft_strlen(str);
-	newstr = ft_strnew(len - i);
+	while (str[++i] && str[i] != c);
+	len = spaceless_len(str);
+	newstr = ft_strnew((unsigned int)len - i);
 	while (str[++i] != '\0')
+	{
+		if (str[i] == 32)
+		{
+			while (str[i] == 32)
+				i++;
+		}
 		newstr[++j] = str[i];
+	}
 	return (newstr);
 }

@@ -20,6 +20,7 @@ SRC_ASM		=	main.c					\
 				ft_write.c				\
 				convert.c				\
 				ft_sti.c				\
+				ft_or.c					\
 				ft_params.c				\
 				ft_decoding.c			\
 				ft_get_encoding.c		\
@@ -52,7 +53,7 @@ SRC_ASM		=	main.c					\
 FLAGS	=  -Wall -Wextra -Werror
 
 LIBRARY =	-L libft -lft
-			
+
 all: $(NAME)
 
 $(NAME):
