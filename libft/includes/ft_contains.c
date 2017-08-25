@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_abs.c                                           :+:      :+:    :+:   */
+/*   ft_contains.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtshekel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/01 20:35:03 by gtshekel          #+#    #+#             */
-/*   Updated: 2017/08/24 14:10:02 by mmayibo          ###   ########.fr       */
+/*   Created: 2017/08/02 13:45:06 by gtshekel          #+#    #+#             */
+/*   Updated: 2017/08/24 14:11:39 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-int		ft_abs(int a)
+int		ft_contains(char *s, char c)
 {
-	return (a >= 0 ? a : -a);
+	int index;
+
+	index = 0;
+	while (s[index])
+	{
+		if (s[index] == c)
+			return (1);
+		index++;
+	}
+	return (0);
 }

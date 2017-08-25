@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_abs.c                                           :+:      :+:    :+:   */
+/*   ft_getbytes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gtshekel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mmayibo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/01 20:35:03 by gtshekel          #+#    #+#             */
-/*   Updated: 2017/08/24 14:10:02 by mmayibo          ###   ########.fr       */
+/*   Created: 2017/08/24 15:42:21 by mmayibo           #+#    #+#             */
+/*   Updated: 2017/08/24 15:55:07 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "ft_corewar.h"
 
-int		ft_abs(int a)
+int			get_bytes(t_conv **line)
 {
-	return (a >= 0 ? a : -a);
+	int		bytes_in_line;
+
+	bytes_in_line = 0;
+	
+
 }
