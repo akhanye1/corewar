@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 23:40:00 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/25 11:12:51 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/25 13:35:22 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct		s_asm
 	header_t	header;
 }					t_asm;
 
-typedef int (*mne_func)(t_conv *);
+typedef int (*mne_func)(t_conv *, int);
 
 int				ft_fileok(char *filename);
 unsigned char	ft_get_opcode(char *str);
@@ -55,7 +55,7 @@ int				convert_file(int fd);
 int				ft_get_dir(char *val);
 int				ft_get_ind(char *val);
 int				ft_get_reg(char *val);
-int				ft_sti(t_conv *instruct);
+int				ft_sti(t_conv *instruct, int total_bytes);
 char			*ft_decoding(char *str);
 unsigned char	ft_get_encoding(char *str);
 unsigned char	bintodec(char *bin_no);
