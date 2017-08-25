@@ -6,7 +6,7 @@
 #    By: akhanye <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/30 10:25:20 by akhanye           #+#    #+#              #
-#    Updated: 2017/08/22 08:28:45 by jngoma           ###   ########.fr        #
+#    Updated: 2017/08/25 10:03:49 by mmayibo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,7 +103,8 @@ SRC		= 	$(INCL)ft_isalnum.c	\
 			$(INCL)ft_htoi.c\
  			$(INCL)ft_items_in_grid.c\
  			$(INCL)ft_contains_str.c\
- 			$(INCL)ft_out_of_int_range.c
+ 			$(INCL)ft_out_of_int_range.c\
+ 			$(INCL)ft_strndup.c
 
 
 OBJ		= 	ft_isalnum.o	\
@@ -194,8 +195,8 @@ OBJ		= 	ft_isalnum.o	\
 			ft_htoi.o\
  			ft_items_in_grid.o\
  			ft_contains_str.o\
- 			ft_out_of_int_range.o
-
+ 			ft_out_of_int_range.o\
+			ft_strndup.o
 			
 
 FLAGS	=	-Wall -Wextra -Werror
