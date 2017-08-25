@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 10:30:52 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/24 17:56:24 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/25 11:12:44 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static void		init_struct(t_conv *temp, char *line)
 	i = -1;
 	temp->line = ft_strdup(line);
 	temp->data = NULL;
+	temp->index = 0;
 	temp->bytes	= 0;
 	temp->haslabel = 0;
 	temp->opcode = 0;
@@ -96,13 +97,30 @@ static int		get_file(int fd, t_asm *data)
 	}
 	return (1);
 }
-/*
+
 int update_conv(t_conv *line)
 {
-	ft_putendl(line->line);
+	char		*newstr;
+	char 		*mne;
+	int 		i;
+	mne_func	functs[16]; 
+	void		*(f)(char*);
+
+	if (!(newstr = ft_strtrim(line->line)))
+		return (0);
+	if (line->line)
+		free(line->line);
+	i = -1;
+	line->line = newstr;
+	while(newstr[++i] != ' ')
+		;
+	fill_opcode_array(functs);
+	mne = ft_strndup(mne, i);
+	functs[(int)ft_get_opcode(mne)](line);
 	return (0);
+
 }
-*/
+
 int				convert_file(int fd)
 {
 	char		*line;
@@ -127,7 +145,7 @@ int				convert_file(int fd)
 			if (ft_strequ(data.line->line, ""))
 				data.line = data.line->next;
 		}
-		//update_conv(data.line);
+		update_conv(data.line);
 		//getbytes will run in here as one of the updating functions;
 		total_bytes += data.line->bytes;
 		data.line = data.line->next;

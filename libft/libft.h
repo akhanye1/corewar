@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/29 12:27:08 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/22 07:24:37 by jngoma           ###   ########.fr       */
+/*   Updated: 2017/08/25 10:01:27 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,5 @@ void				ft_freestrsplit(char **str);
 char 				*ft_strdefix(char *str, int n);
 char 				*ft_strshrink(char *str);
 char 				*ft_strdesplit(char **grid, int c);
-
+char				*ft_strndup(const char *s, int len);
 #endif

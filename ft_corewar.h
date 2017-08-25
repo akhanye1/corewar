@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 23:40:00 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/24 16:09:43 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/25 11:12:51 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 typedef struct		s_conv
 {
 	char			*line;
+	int				index;
 	unsigned char	*data;
 	int				bytes;
 	char			haslabel;
@@ -45,6 +46,8 @@ typedef struct		s_asm
 	header_t	header;
 }					t_asm;
 
+typedef int (*mne_func)(t_conv *);
+
 int				ft_fileok(char *filename);
 unsigned char	ft_get_opcode(char *str);
 void			write_to_cor(t_asm *data);
@@ -60,4 +63,5 @@ int         	ft_is_label_only(char *line);
 int         	ft_contains_label(char *line);
 t_label     	*create_label(char **line, int total_bytes);
 void			add_label(t_label **label, t_label *newlabel);
+void			fill_opcode_array(mne_func *func_array);
 #endif
