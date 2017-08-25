@@ -21,17 +21,17 @@ static void	fill_params(t_conv *instruct, char **split, char *decode)
 	{
 		if (decode[i] == '1')
 		{
-			instruct->b_param[i] = 1;
+			instruct->b_param[i] = T_REG;
 			instruct->param[i] = ft_get_reg(split[i]);
 		}
 		else if (decode[i] == '2')
 		{
-			instruct->b_param[i] = IND_SIZE;
+			instruct->b_param[i] = T_DIR;
 			instruct->param[i] = ft_get_dir(split[i]);
 		}
 		else if (decode[i] == '3')
 		{
-			instruct->b_param[i] = IND_SIZE;
+			instruct->b_param[i] = T_IND;
 			instruct->param[i] = ft_get_ind(split[i]);
 		}
 		i++;
