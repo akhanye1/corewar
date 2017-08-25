@@ -38,7 +38,7 @@ static void	fill_params(t_conv *instruct, char **split, char *decode)
 	}
 }
 
-int		ft_sti(t_conv *instruct)
+int		ft_or(t_conv *instruct)
 {
 	char	*defix;
 	char	**split;
@@ -48,7 +48,7 @@ int		ft_sti(t_conv *instruct)
 	if (!(defix = ft_strdefix(instruct->line, ' ')) ||
 			!(split = ft_strsplit(defix, ',')))
 		return (0);
-	if (!(instruct->opcode = ft_get_opcode("sti")))
+	if (!(instruct->opcode = ft_get_opcode("or")))
 		return (0);
 	instruct->bytes = 2;
 	instruct->hasencoding = 1;
