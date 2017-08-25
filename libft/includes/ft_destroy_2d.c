@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_abs.c                                           :+:      :+:    :+:   */
+/*   ft_destroy_2d.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gtshekel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/01 20:35:03 by gtshekel          #+#    #+#             */
-/*   Updated: 2017/08/24 14:10:02 by mmayibo          ###   ########.fr       */
+/*   Created: 2017/08/03 12:57:54 by gtshekel          #+#    #+#             */
+/*   Updated: 2017/08/24 14:11:05 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-int		ft_abs(int a)
+void	**ft_destroy_2d(void **grid)
 {
-	return (a >= 0 ? a : -a);
+	int index;
+
+	if (grid)
+	{
+		index = 0;
+		while (grid[index])
+		{
+			ft_memdel(&grid[index]);
+			index++;
+		}
+		free(grid);
+		grid = NULL;
+	}
+	return (NULL);
 }
