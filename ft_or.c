@@ -6,7 +6,7 @@
 /*   By: jngoma <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/25 10:43:12 by jngoma            #+#    #+#             */
-/*   Updated: 2017/08/25 10:48:48 by jngoma           ###   ########.fr       */
+/*   Updated: 2017/08/25 11:03:57 by jngoma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	fill_params(t_conv *instruct, char **split, char *decode)
 	}
 }
 
-int		ft_sti(t_conv *instruct)
+int		ft_or(t_conv *instruct)
 {
 	char	**split;
 	char	*decode;
