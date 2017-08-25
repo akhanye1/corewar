@@ -123,7 +123,6 @@ int					ft_inarray(char *search, char **array);
 int					ft_inarrayc(char search, char **array);
 void				ft_freestrsplit(char **str);
 char 				*ft_strdefix(char *str, int n);
-char 				*ft_strshrink(char *str);
 char 				*ft_strdesplit(char **grid, int c);
 char				*ft_strndup(const char *s, int len);
 #endif
