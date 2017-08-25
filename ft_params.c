@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   numberconversion.c                                 :+:      :+:    :+:   */
+/*   ft_reg.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmayibo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/22 10:54:02 by mmayibo           #+#    #+#             */
-/*   Updated: 2017/08/24 12:08:16 by mmayibo          ###   ########.fr       */
+/*   Created: 2017/08/24 11:08:15 by mmayibo           #+#    #+#             */
+/*   Updated: 2017/08/24 12:06:13 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_corewar.h"
 
-unsigned char	bintodec(char *bin_no)
+int		ft_get_dir(char *val)
 {
-	unsigned char 	nbr;
-	int 			byte;
+	if (ft_strchr(val, ':') == NULL)
+		return (ft_atoi(val + 1));
+	else
+		return (0);
+}
 
-	byte = 128;
-	nbr = 0;
-	while(byte)
-	{
-		if (*bin_no == '1')
-			nbr += byte;
-		bin_no++;
-		byte /= 2;
-	}
-	return (nbr);
+int		ft_get_ind(char *val)
+{
+	return (ft_atoi(val));
+}
+
+int		ft_get_reg(char *val)
+{
+	int	reg;
+
+	reg = ft_atoi(val + 1);
+	return (reg);
 }
