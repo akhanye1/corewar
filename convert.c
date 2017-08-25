@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 10:30:52 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/25 11:12:44 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/25 16:25:45 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ static int		get_file(int fd, t_asm *data)
 	return (1);
 }
 
-int update_conv(t_conv *line)
+int update_conv(t_conv *line, int total_bytes)
 {
 	char		*newstr;
 	char 		*mne;
@@ -106,17 +106,17 @@ int update_conv(t_conv *line)
 	mne_func	functs[16]; 
 	void		*(f)(char*);
 
-	if (!(newstr = ft_strtrim(line->line)))
+	if (!(newstr = ft_strtrim((*line).line)))
 		return (0);
-	if (line->line)
-		free(line->line);
+	if ((*line).line)
+		free((*line).line);
 	i = -1;
-	line->line = newstr;
+	(*line).line = newstr;
 	while(newstr[++i] != ' ')
 		;
 	fill_opcode_array(functs);
 	mne = ft_strndup(mne, i);
-	functs[(int)ft_get_opcode(mne)](line);
+	functs[(int)ft_get_opcode(mne)](line, total_bytes);
 	return (0);
 
 }
@@ -127,6 +127,7 @@ int				convert_file(int fd)
 	t_asm		data;
 	t_label		*labels;
 	int			total_bytes;
+	t_conv 		*iter;
 
 	total_bytes = PROG_NAME_LENGTH + COMMENT_LENGTH;
 	line = NULL;
@@ -134,23 +135,24 @@ int				convert_file(int fd)
 	labels = NULL;
 	if (!get_file(fd, &data))
 		return (0);
-	while (data.line)
+	iter = data.line;
+	while (iter)
 	{
-		if (ft_is_label_only(data.line->line) || ft_contains_label(data.line->line))
+		if (ft_is_label_only(iter->line) || ft_contains_label(iter->line))
 		{
 			if (labels == NULL)
-				labels = create_label(&data.line->line, total_bytes);
+				labels = create_label(&iter->line, total_bytes);
 			else
-				add_label(&labels, create_label(&data.line->line, total_bytes));
-			if (ft_strequ(data.line->line, ""))
-				data.line = data.line->next;
+				add_label(&labels, create_label(&iter->line, total_bytes));
+			if (ft_strequ(iter->line, ""))
+				iter = iter->next;
 		}
-		update_conv(data.line);
-		//getbytes will run in here as one of the updating functions;
-		total_bytes += data.line->bytes;
-		data.line = data.line->next;
+		update_conv(iter, total_bytes);
+		total_bytes += iter->bytes;
+		iter = iter->next;
 	}
 	//get_instructions(fd, &data);
 	write_to_cor(&data);
+
 	return (1);
 }
