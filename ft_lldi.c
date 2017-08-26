@@ -6,13 +6,13 @@
 /*   By: sletlape <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/26 10:45:51 by sletlape          #+#    #+#             */
-/*   Updated: 2017/08/26 11:12:59 by sletlape         ###   ########.fr       */
+/*   Updated: 2017/08/26 16:04:37 by sletlape         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_corewar.h"
 
-int		ft_lldi(t_conv *instruct, int total_bytes)
+int		ft_lldi(t_conv *instruct, int total_bytes, t_label *labels)
 {
 	char	*defix;
 	char	**split;
@@ -32,7 +32,7 @@ int		ft_lldi(t_conv *instruct, int total_bytes)
 	instruct->indir_bytes = IND_SIZE;
 	instruct->dir_bytes = DIR_SIZE;
 	decode = ft_decoding(instruct->line);
-	fill_params(instruct, split, decode);
+	fill_params(instruct, split, decode, labels);
 	i = -1;
 	while (++i < instruct->n_params)
 		instruct->bytes += instruct->b_param[i];

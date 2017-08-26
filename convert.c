@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 10:30:52 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/26 09:14:10 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/26 16:42:20 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,13 @@ static int		get_file(int fd, t_asm *data)
 	return (1);
 }
 
-int update_conv(t_conv *line, int total_bytes)
+int update_conv(t_conv *line, int total_bytes, t_label *labels)
 {
 	char		*newstr;
 	char 		*mne;
 	int 		i;
 	mne_func	functs[16]; 
-	void		*(f)(char*);
+	void		*(f)(char*, int, t_label*);
 
 	if (!(newstr = ft_strtrim((*line).line)))
 		return (0);
@@ -118,7 +118,7 @@ int update_conv(t_conv *line, int total_bytes)
 		;
 	fill_opcode_array(functs);
 	mne = ft_strndup(newstr, i);
-	functs[(int)ft_get_opcode(mne) -1](line, total_bytes);
+	functs[(int)ft_get_opcode(mne) -1](line, total_bytes, labels);
 	return (0);
 
 }
@@ -138,23 +138,16 @@ int				convert_file(int fd)
 	if (!get_file(fd, &data))
 		return (0);
 	iter = data.line;
+
+	create_all_lbls(&labels, &iter, total_bytes);
+	iter = data.line;
+	total_bytes = PROG_NAME_LENGTH + COMMENT_LENGTH;
 	while (iter)
 	{
-		if (ft_is_label_only(iter->line) || ft_contains_label(iter->line))
-		{
-			if (labels == NULL)
-				labels = create_label(&iter->line, total_bytes);
-			else
-				add_label(&labels, create_label(&iter->line, total_bytes));
-			if (ft_strequ(iter->line, ""))
-				iter = iter->next;
-		}
-		update_conv(iter, total_bytes);
+		update_conv(iter, total_bytes, labels);
 		total_bytes += iter->bytes;
 		iter = iter->next;
 	}
-	//get_instructions(fd, &data);
 	write_to_cor(&data);
-
 	return (1);
 }

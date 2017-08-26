@@ -6,7 +6,7 @@
 /*   By: mmayibo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 13:30:27 by mmayibo           #+#    #+#             */
-/*   Updated: 2017/08/26 10:02:24 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/26 15:46:11 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ unsigned char		check_first_instructs(char *str)
 
 void fill_opcode_array(mne_func *func_array)
 {
-	func_array[0] = ft_sti;
+	func_array[0] = ft_live;
 	func_array[1] = ft_sti;
 	func_array[2] = ft_sti;
 	func_array[3] = ft_sti;
