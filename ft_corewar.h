@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 23:40:00 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/26 16:04:51 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/26 17:39:36 by sletlape         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,5 @@ int				needslabel(char *split);
 int				get_lbl(char *item, int index, t_label *labels);
 int				update_conv(t_conv *line, int total_bytes, t_label *labels);
 int				ft_live(t_conv *instruct, int total_bytes, t_label *labels);
+int				ft_lldi(t_conv *instruct, int total_bytes, t_label *labels);
 #endif
