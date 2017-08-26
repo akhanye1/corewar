@@ -6,7 +6,7 @@
 /*   By: sletlape <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/26 10:45:51 by sletlape          #+#    #+#             */
-/*   Updated: 2017/08/26 16:04:37 by sletlape         ###   ########.fr       */
+/*   Updated: 2017/08/26 17:57:02 by sletlape         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int		ft_lldi(t_conv *instruct, int total_bytes, t_label *labels)
 	instruct->n_params = 3;
 	instruct->index = total_bytes + 1;
 	instruct->indir_bytes = IND_SIZE;
-	instruct->dir_bytes = DIR_SIZE;
-	decode = ft_decoding(instruct->line);
+	instruct->dir_bytes = IND_SIZE;
+	decode = ft_decoding(instruct->line, instruct->n_params);
 	fill_params(instruct, split, decode, labels);
 	i = -1;
 	while (++i < instruct->n_params)
