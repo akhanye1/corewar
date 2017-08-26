@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 23:40:00 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/25 13:35:22 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/26 08:54:27 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "op.h"
 # include "libft/libft.h"
-
+# include  <stdio.h>
 typedef struct		s_conv
 {
 	char			*line;
@@ -56,6 +56,8 @@ int				ft_get_dir(char *val);
 int				ft_get_ind(char *val);
 int				ft_get_reg(char *val);
 int				ft_sti(t_conv *instruct, int total_bytes);
+int				ft_or(t_conv *instruct, int total_bytes);
+int				ft_and(t_conv *instruct, int total_bytes);
 char			*ft_decoding(char *str);
 unsigned char	ft_get_encoding(char *str);
 unsigned char	bintodec(char *bin_no);

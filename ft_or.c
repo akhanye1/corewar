@@ -6,7 +6,7 @@
 /*   By: jngoma <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/25 17:06:59 by jngoma            #+#    #+#             */
-/*   Updated: 2017/08/25 17:07:01 by jngoma           ###   ########.fr       */
+/*   Updated: 2017/08/26 08:30:27 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	fill_params(t_conv *instruct, char **split, char *decode)
 	}
 }
 
-int		ft_or(t_conv *instruct)
+int		ft_or(t_conv *instruct, int total_bytes)
 {
 	char	*defix;
 	char	**split;
@@ -54,6 +54,7 @@ int		ft_or(t_conv *instruct)
 	instruct->hasencoding = 1;
 	instruct->encoding = ft_get_encoding(instruct->line);
 	instruct->n_params = 3;
+	instruct->index = total_bytes + 1;
 	decode = ft_decoding(instruct->line);
 	fill_params(instruct, split, decode);
 	i = -1;

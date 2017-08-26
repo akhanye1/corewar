@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 10:26:34 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/25 17:45:51 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/26 08:27:45 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void 		write_conv_data(t_conv *instruct, int fd)
 	write(fd, &instruct->opcode,1);
 	if (instruct->hasencoding)
 		write(fd, &instruct->encoding,1);
-	while(++i < instruct->n_params + 1)
+	while(++i < instruct->n_params)
 	{
 		temp = (unsigned char*)&instruct->param[i];
 		write_numbers(temp, instruct->b_param[i], fd);	
