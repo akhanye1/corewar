@@ -14,13 +14,13 @@
 
 int		ft_or(t_conv *instruct, int total_bytes)
 {
-	char	*defix;
 	char	**split;
 	char	*decode;
 	int		i;
 
-	if (!(defix = ft_strdefix(instruct->line, ' ')) ||
-			!(split = ft_strsplit(defix, ',')))
+	if (!(split = ft_strsplit(ft_strdefix(instruct->line, ' '), ',')))
+		return (0);
+	if (split[2][0] != 'r')
 		return (0);
 	if (!(instruct->opcode = ft_get_opcode("or")))
 		return (0);
