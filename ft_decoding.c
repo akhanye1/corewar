@@ -26,11 +26,11 @@ char 		*ft_decoding(char *str)
 	while (++i < 3)
 	{
 		if (grid[i][0] == 'r')
-			ret[++j] = '1';
-		else if (grid[i][0] == '%')
-			ret[++j] = '2';
+			ret[++j] = REG_CODE;
+		else if (grid[i][0] == DIRECT_CHAR)
+			ret[++j] = DIR_CODE;
 		else
-			ret[++j] = '3';
+			ret[++j] = IND_CODE;
 	}
 	return (ret);
 }
