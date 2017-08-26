@@ -6,7 +6,7 @@
 /*   By: mmayibo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 13:30:27 by mmayibo           #+#    #+#             */
-/*   Updated: 2017/08/25 11:12:25 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/26 09:30:37 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ void fill_opcode_array(mne_func *func_array)
 	func_array[2] = ft_sti;
 	func_array[3] = ft_sti;
 	func_array[4] = ft_sti;
-	func_array[5] = ft_sti;
-	func_array[6] = ft_sti;
+	func_array[5] = ft_and;
+	func_array[6] = ft_or;
 	func_array[7] = ft_sti;
 	func_array[8] = ft_sti;
 	func_array[9] = ft_sti;

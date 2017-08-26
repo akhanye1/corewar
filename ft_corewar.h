@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 23:40:00 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/25 13:35:22 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/26 09:27:44 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "op.h"
 # include "libft/libft.h"
-
+# include  <stdio.h>
 typedef struct		s_conv
 {
 	char			*line;
@@ -29,6 +29,8 @@ typedef struct		s_conv
 	char			n_params;
 	char			b_param[3];
 	int				param[3];
+	int 			dir_bytes;
+	int				indir_bytes;
 	struct	s_conv	*next;
 	struct	s_conv	*prev;
 }					t_conv;
@@ -56,6 +58,8 @@ int				ft_get_dir(char *val);
 int				ft_get_ind(char *val);
 int				ft_get_reg(char *val);
 int				ft_sti(t_conv *instruct, int total_bytes);
+int				ft_or(t_conv *instruct, int total_bytes);
+int				ft_and(t_conv *instruct, int total_bytes);
 char			*ft_decoding(char *str);
 unsigned char	ft_get_encoding(char *str);
 unsigned char	bintodec(char *bin_no);
@@ -64,4 +68,5 @@ int         	ft_contains_label(char *line);
 t_label     	*create_label(char **line, int total_bytes);
 void			add_label(t_label **label, t_label *newlabel);
 void			fill_opcode_array(mne_func *func_array);
+void			fill_params(t_conv *instruct, char **split, char *decode);
 #endif

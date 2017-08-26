@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 10:30:52 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/25 16:25:45 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/26 09:14:10 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ static void		init_struct(t_conv *temp, char *line)
 	temp->n_params = 0;
 	temp->next = NULL;
 	temp->prev = NULL;
+	temp->dir_bytes = 0;
+	temp->indir_bytes = 0;
 	i = -1;
 	while (++i < 3)
 	{
@@ -115,8 +117,8 @@ int update_conv(t_conv *line, int total_bytes)
 	while(newstr[++i] != ' ')
 		;
 	fill_opcode_array(functs);
-	mne = ft_strndup(mne, i);
-	functs[(int)ft_get_opcode(mne)](line, total_bytes);
+	mne = ft_strndup(newstr, i);
+	functs[(int)ft_get_opcode(mne) -1](line, total_bytes);
 	return (0);
 
 }
