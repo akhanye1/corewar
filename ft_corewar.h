@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 23:40:00 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/26 10:01:13 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/26 14:54:29 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,7 @@ typedef struct		s_asm
 	header_t	header;
 }					t_asm;
 
-typedef int (*mne_func)(t_conv *, int);
-
+typedef int (*mne_func)(t_conv *, int, t_label*);
 int				ft_fileok(char *filename);
 unsigned char	ft_get_opcode(char *str);
 void			write_to_cor(t_asm *data);
@@ -57,10 +56,10 @@ int				convert_file(int fd);
 int				ft_get_dir(char *val);
 int				ft_get_ind(char *val);
 int				ft_get_reg(char *val);
-int				ft_sti(t_conv *instruct, int total_bytes);
-int				ft_or(t_conv *instruct, int total_bytes);
-int				ft_xor(t_conv *instruct, int total_bytes);
-int				ft_and(t_conv *instruct, int total_bytes);
+int				ft_sti(t_conv *instruct, int total_bytes , t_label *labels);
+int				ft_or(t_conv *instruct, int total_bytes, t_label *labels);
+int				ft_xor(t_conv *instruct, int total_bytes,t_label *lables);
+int				ft_and(t_conv *instruct, int total_bytes,t_label *lables);
 char			*ft_decoding(char *str);
 unsigned char	ft_get_encoding(char *str);
 unsigned char	bintodec(char *bin_no);
@@ -69,5 +68,8 @@ int         	ft_contains_label(char *line);
 t_label     	*create_label(char **line, int total_bytes);
 void			add_label(t_label **label, t_label *newlabel);
 void			fill_opcode_array(mne_func *func_array);
-void			fill_params(t_conv *instruct, char **split, char *decode);
+void			fill_params(t_conv *instruct, char **split, char *decode, t_label *labels);
+void        create_all_lbls(t_label **labels, t_conv **iter, int total_bytes);
+int         needslabel(char *split);
+int         get_lbl(char *item, int index, t_label *labels);
 #endif
