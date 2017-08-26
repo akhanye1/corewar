@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 23:40:00 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/26 11:55:27 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/26 14:54:29 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,7 @@ t_label     	*create_label(char **line, int total_bytes);
 void			add_label(t_label **label, t_label *newlabel);
 void			fill_opcode_array(mne_func *func_array);
 void			fill_params(t_conv *instruct, char **split, char *decode, t_label *labels);
+void        create_all_lbls(t_label **labels, t_conv **iter, int total_bytes);
+int         needslabel(char *split);
+int         get_lbl(char *item, int index, t_label *labels);
 #endif

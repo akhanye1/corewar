@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 10:30:52 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/26 11:38:42 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/26 14:54:22 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,23 +138,14 @@ int				convert_file(int fd)
 	if (!get_file(fd, &data))
 		return (0);
 	iter = data.line;
+	create_all_lbls(&labels, &iter, total_bytes);
+	iter = data.line;
 	while (iter)
 	{
-		if (ft_is_label_only(iter->line) || ft_contains_label(iter->line))
-		{
-			if (labels == NULL)
-				labels = create_label(&iter->line, total_bytes);
-			else
-				add_label(&labels, create_label(&iter->line, total_bytes));
-			if (ft_strequ(iter->line, ""))
-				iter = iter->next;
-		}
 		update_conv(iter, total_bytes, labels);
 		total_bytes += iter->bytes;
 		iter = iter->next;
 	}
-	//get_instructions(fd, &data);
 	write_to_cor(&data);
-
 	return (1);
 }
