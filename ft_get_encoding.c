@@ -30,7 +30,7 @@ unsigned char		ft_get_encoding(char *str)
 	{
 		ret[j] = (grid[i][0] == 'r') ? '0' : '1';
 		ret[j + 1] = (grid[i][0] == 'r') ? '1' : 0;
-		ret[j + 1] = (grid[i][0] == '%') ? '0' : '1';
+		ret[j + 1] = (grid[i][0] == DIRECT_CHAR) ? '0' : '1';
 		j += 2;
 	}
 	return (bintodec(ret));
