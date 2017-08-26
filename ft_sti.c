@@ -6,13 +6,13 @@
 /*   By: mmayibo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 09:32:02 by mmayibo           #+#    #+#             */
-/*   Updated: 2017/08/26 09:23:28 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/26 11:55:29 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_corewar.h"
 
-int		ft_sti(t_conv *instruct, int total_bytes)
+int		ft_sti(t_conv *instruct, int total_bytes, t_label *labels)
 {
 	char	*defix;
 	char	**split;
@@ -32,7 +32,7 @@ int		ft_sti(t_conv *instruct, int total_bytes)
 	instruct->indir_bytes = IND_SIZE;
 	instruct->dir_bytes = IND_SIZE;
 	decode = ft_decoding(instruct->line);
-	fill_params(instruct, split, decode);
+	fill_params(instruct, split, decode, labels);
 	i = -1;
 	while (++i < instruct->n_params)
 		instruct->bytes += instruct->b_param[i];

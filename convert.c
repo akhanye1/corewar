@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 10:30:52 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/26 09:14:10 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/26 11:38:42 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ static int		get_file(int fd, t_asm *data)
 	return (1);
 }
 
-int update_conv(t_conv *line, int total_bytes)
+int update_conv(t_conv *line, int total_bytes, t_label *labels)
 {
 	char		*newstr;
 	char 		*mne;
@@ -118,7 +118,7 @@ int update_conv(t_conv *line, int total_bytes)
 		;
 	fill_opcode_array(functs);
 	mne = ft_strndup(newstr, i);
-	functs[(int)ft_get_opcode(mne) -1](line, total_bytes);
+	functs[(int)ft_get_opcode(mne) -1](line, total_bytes, labels);
 	return (0);
 
 }
@@ -149,7 +149,7 @@ int				convert_file(int fd)
 			if (ft_strequ(iter->line, ""))
 				iter = iter->next;
 		}
-		update_conv(iter, total_bytes);
+		update_conv(iter, total_bytes, labels);
 		total_bytes += iter->bytes;
 		iter = iter->next;
 	}

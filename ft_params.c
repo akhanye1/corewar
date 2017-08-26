@@ -6,7 +6,7 @@
 /*   By: mmayibo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 11:08:15 by mmayibo           #+#    #+#             */
-/*   Updated: 2017/08/26 09:21:59 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/26 11:55:24 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,28 +33,33 @@ int		ft_get_reg(char *val)
 	return (reg);
 }
 
-void	fill_params(t_conv *instruct, char **split, char *decode)
+void	fill_params(t_conv *inst, char **splt, char *decode, t_label *labels)
 {
 	int	i;
 
-	i = 0;
-	while(i < 3)
+	i = -1;
+	while(++i < 3)
 	{
 		if (decode[i] == '1')
 		{
-			instruct->b_param[i] = 1;
-			instruct->param[i] = ft_get_reg(split[i]);
+			inst->b_param[i] = 1;
+			inst->param[i] = ft_get_reg(splt[i]);
 		}
 		else if (decode[i] == '2')
 		{
-			instruct->b_param[i] = instruct->dir_bytes;
-			instruct->param[i] = ft_get_dir(split[i]);
+			inst->b_param[i] = inst->dir_bytes;
+			if (needslabel(splt[i]))
+				inst->param[i] = get_lbl(splt[i], inst->index, labels);
+			else 
+				inst->param[i] = ft_get_dir(splt[i]);
 		}
 		else if (decode[i] == '3')
 		{
-			instruct->b_param[i] = instruct->indir_bytes;
-			instruct->param[i] = ft_get_ind(split[i]);
+			inst->b_param[i] = inst->indir_bytes;
+			if (needslabel(splt[i]))
+				inst->param[i] = get_lbl(splt[i], inst->index, labels);
+			else 
+				inst->param[i] = ft_get_ind(splt[i]);
 		}
-		i++;
 	}
 }
