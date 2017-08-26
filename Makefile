@@ -6,7 +6,7 @@
 #    By: akhanye <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/30 10:25:20 by akhanye           #+#    #+#              #
-#    Updated: 2017/08/26 09:28:01 by mmayibo          ###   ########.fr        #
+#    Updated: 2017/08/26 10:01:43 by mmayibo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC_ASM		=	main.c					\
 				ft_sti.c				\
 				ft_and.c				\
 				ft_or.c					\
+				ft_xor.c				\
 				ft_params.c				\
 				ft_decoding.c			\
 				ft_get_encoding.c		\

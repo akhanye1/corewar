@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 23:40:00 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/26 09:27:44 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/26 10:01:13 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int				ft_get_ind(char *val);
 int				ft_get_reg(char *val);
 int				ft_sti(t_conv *instruct, int total_bytes);
 int				ft_or(t_conv *instruct, int total_bytes);
+int				ft_xor(t_conv *instruct, int total_bytes);
 int				ft_and(t_conv *instruct, int total_bytes);
 char			*ft_decoding(char *str);
 unsigned char	ft_get_encoding(char *str);
