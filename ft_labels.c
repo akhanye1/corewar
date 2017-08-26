@@ -6,7 +6,7 @@
 /*   By: mmayibo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 13:45:46 by mmayibo           #+#    #+#             */
-/*   Updated: 2017/08/26 14:54:25 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/26 16:42:30 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,8 @@ void		create_all_lbls(t_label **labels, t_conv **iter, int total_bytes)
 			if (ft_strequ((*iter)->line, ""))
 				*iter = (*iter)->next;
 		}
+		update_conv(*iter, total_bytes, *labels);
+		total_bytes += (*iter)->bytes;
 		*iter = (*iter)->next;
 	}
 }

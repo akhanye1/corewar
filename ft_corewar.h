@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 23:40:00 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/26 14:54:29 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/26 16:04:51 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int				ft_sti(t_conv *instruct, int total_bytes , t_label *labels);
 int				ft_or(t_conv *instruct, int total_bytes, t_label *labels);
 int				ft_xor(t_conv *instruct, int total_bytes,t_label *lables);
 int				ft_and(t_conv *instruct, int total_bytes,t_label *lables);
-char			*ft_decoding(char *str);
+char			*ft_decoding(char *str, int n_params);
 unsigned char	ft_get_encoding(char *str);
 unsigned char	bintodec(char *bin_no);
 int         	ft_is_label_only(char *line);
@@ -69,7 +69,9 @@ t_label     	*create_label(char **line, int total_bytes);
 void			add_label(t_label **label, t_label *newlabel);
 void			fill_opcode_array(mne_func *func_array);
 void			fill_params(t_conv *instruct, char **split, char *decode, t_label *labels);
-void        create_all_lbls(t_label **labels, t_conv **iter, int total_bytes);
-int         needslabel(char *split);
-int         get_lbl(char *item, int index, t_label *labels);
+void			create_all_lbls(t_label **labels, t_conv **iter, int total_bytes);
+int				needslabel(char *split);
+int				get_lbl(char *item, int index, t_label *labels);
+int				update_conv(t_conv *line, int total_bytes, t_label *labels);
+int				ft_live(t_conv *instruct, int total_bytes, t_label *labels);
 #endif

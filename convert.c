@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 10:30:52 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/26 14:54:22 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/26 16:42:20 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int update_conv(t_conv *line, int total_bytes, t_label *labels)
 	char 		*mne;
 	int 		i;
 	mne_func	functs[16]; 
-	void		*(f)(char*);
+	void		*(f)(char*, int, t_label*);
 
 	if (!(newstr = ft_strtrim((*line).line)))
 		return (0);
@@ -138,8 +138,10 @@ int				convert_file(int fd)
 	if (!get_file(fd, &data))
 		return (0);
 	iter = data.line;
+
 	create_all_lbls(&labels, &iter, total_bytes);
 	iter = data.line;
+	total_bytes = PROG_NAME_LENGTH + COMMENT_LENGTH;
 	while (iter)
 	{
 		update_conv(iter, total_bytes, labels);
