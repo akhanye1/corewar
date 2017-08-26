@@ -6,7 +6,7 @@
 /*   By: jngoma <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/25 17:06:59 by jngoma            #+#    #+#             */
-/*   Updated: 2017/08/26 11:42:17 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/26 12:00:04 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int		ft_or(t_conv *instruct, int total_bytes, t_label *labels)
 {
-	char	*defix;
 	char	**split;
 	char	*decode;
 	int		i;
 
-	if (!(defix = ft_strdefix(instruct->line, ' ')) ||
-			!(split = ft_strsplit(defix, ',')))
+	if (!(split = ft_strsplit(ft_strdefix(instruct->line, ' '), ',')))
+		return (0);
+	if (split[2][0] != 'r')
 		return (0);
 	if (!(instruct->opcode = ft_get_opcode("or")))
 		return (0);
