@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 23:40:00 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/26 08:54:27 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/26 09:27:44 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct		s_conv
 	char			n_params;
 	char			b_param[3];
 	int				param[3];
+	int 			dir_bytes;
+	int				indir_bytes;
 	struct	s_conv	*next;
 	struct	s_conv	*prev;
 }					t_conv;
@@ -66,4 +68,5 @@ int         	ft_contains_label(char *line);
 t_label     	*create_label(char **line, int total_bytes);
 void			add_label(t_label **label, t_label *newlabel);
 void			fill_opcode_array(mne_func *func_array);
+void			fill_params(t_conv *instruct, char **split, char *decode);
 #endif
