@@ -6,13 +6,13 @@
 /*   By: jbadenho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/25 14:15:02 by jbadenho          #+#    #+#             */
-/*   Updated: 2017/08/26 09:27:31 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/26 16:08:17 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_corewar.h"
 
-int	ft_and(t_conv *instruct, int total_bytes)
+int	ft_and(t_conv *instruct, int total_bytes, t_label *labels)
 {
 	char	*defix;
 	char	**split;
@@ -28,10 +28,10 @@ int	ft_and(t_conv *instruct, int total_bytes)
 	instruct->encoding = ft_get_encoding(instruct->line);
 	instruct->n_params = 3;
 	instruct->indir_bytes = IND_SIZE;
-	instruct->dir_bytes = IND_SIZE;
+	instruct->dir_bytes = DIR_SIZE;
 	instruct->index = total_bytes + 1;
-	decode = ft_decoding(instruct->line);
-	fill_params(instruct, split, decode);
+	decode = ft_decoding(instruct->line, instruct->n_params);
+	fill_params(instruct, split, decode, labels);
 	i = -1;
 	while (++i < instruct->n_params)
 		instruct->bytes += instruct->b_param[i];

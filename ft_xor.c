@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sti.c                                           :+:      :+:    :+:   */
+/*   ft_xor.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmayibo <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jbadenho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/24 09:32:02 by mmayibo           #+#    #+#             */
-/*   Updated: 2017/08/26 16:19:47 by mmayibo          ###   ########.fr       */
+/*   Created: 2017/08/25 14:15:57 by jbadenho          #+#    #+#             */
+/*   Updated: 2017/08/26 16:07:42 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_corewar.h"
 
-int		ft_sti(t_conv *instruct, int total_bytes, t_label *labels)
+int	ft_xor(t_conv *instruct, int total_bytes, t_label *labels)
 {
 	char	*defix;
 	char	**split;
 	char	*decode;
-	int		i;
+	int	i;
 
-	if (!(defix = ft_strdefix(instruct->line, ' ')) ||
-			!(split = ft_strsplit(defix, ',')))
+	if (!(defix = ft_strdefix(instruct->line, ' ')) || !(split = ft_strsplit(defix, ',')))
 		return (0);
-	if (!(instruct->opcode = ft_get_opcode("sti")))
+	if (!(instruct->opcode = ft_get_opcode("xor")))
 		return (0);
 	instruct->bytes = 2;
 	instruct->hasencoding = 1;
@@ -30,7 +29,7 @@ int		ft_sti(t_conv *instruct, int total_bytes, t_label *labels)
 	instruct->n_params = 3;
 	instruct->index = total_bytes + 1;
 	instruct->indir_bytes = IND_SIZE;
-	instruct->dir_bytes = IND_SIZE;
+	instruct->dir_bytes =  DIR_SIZE;
 	decode = ft_decoding(instruct->line, instruct->n_params);
 	fill_params(instruct, split, decode, labels);
 	i = -1;
