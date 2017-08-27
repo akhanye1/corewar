@@ -6,7 +6,7 @@
 /*   By: jngoma <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 13:45:45 by jngoma            #+#    #+#             */
-/*   Updated: 2017/08/26 16:09:17 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/27 07:34:23 by jngoma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ char 		*ft_decoding(char *str, int n_params)
 	while (++i < n_params)
 	{
 		if (grid[i][0] == 'r')
-			ret[++j] = '1';
-		else if (grid[i][0] == '%')
-			ret[++j] = '2';
+			ret[++j] = REG_CODE;
+		else if (grid[i][0] == DIRECT_CHAR)
+			ret[++j] = DIR_CODE;
 		else
-			ret[++j] = '3';
+			ret[++j] = IND_CODE;
 	}
 	return (ret);
 }
