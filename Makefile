@@ -6,7 +6,7 @@
 #    By: akhanye <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/30 10:25:20 by akhanye           #+#    #+#              #
-#    Updated: 2017/08/26 17:38:01 by sletlape         ###   ########.fr        #
+#    Updated: 2017/08/28 08:13:58 by amatshiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC_ASM		=	main.c					\
 				ft_live.c				\
 				ft_and.c				\
 				ft_lldi.c				\
+				ft_lld.c				\
 				ft_or.c					\
 				ft_xor.c				\
 				ft_params.c				\
