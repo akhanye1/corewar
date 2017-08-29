@@ -44,21 +44,18 @@ typedef struct		s_label
 typedef struct		s_asm
 {
 	t_conv		*line;
+	char		debug;
 	header_t	header;
 }					t_asm;
 
-typedef int (*mne_func)(t_conv **, int, t_label*);
+typedef int 	(*mne_func)(t_conv **, int, t_label*);
 int				ft_fileok(char *filename);
 unsigned char	ft_get_opcode(char *str);
 void			write_to_cor(t_asm *data);
-int				convert_file(int fd);
+int				convert_file(int fd, char debug);
 int				ft_get_dir(char *val);
 int				ft_get_ind(char *val);
 int				ft_get_reg(char *val);
-int				ft_sti(t_conv **instruct, int total_bytes , t_label *labels);
-int				ft_or(t_conv **instruct, int total_bytes, t_label *labels);
-int				ft_xor(t_conv **instruct, int total_bytes,t_label *lables);
-int				ft_and(t_conv **instruct, int total_bytes,t_label *lables);
 void			ft_decoding(t_conv **inst);
 unsigned char	ft_get_encoding(char *str);
 unsigned char	bintodec(char *bin_no);
@@ -72,7 +69,28 @@ void			create_all_lbls(t_label **labels, t_conv **iter, int total_bytes);
 int				needslabel(char *split);
 int				get_lbl(char *item, int index, t_label *labels);
 int				update_conv(t_conv **line, int total_bytes, t_label *labels);
+int				get_bytes_in_line(const char *line, int bytes);
+
+int				ft_sti(t_conv **instruct, int total_bytes , t_label *labels);
+int				ft_or(t_conv **instruct, int total_bytes, t_label *labels);
+int				ft_xor(t_conv **instruct, int total_bytes,t_label *lables);
+int				ft_and(t_conv **instruct, int total_bytes,t_label *lables);
 int				ft_live(t_conv **instruct, int total_bytes, t_label *labels);
 int				ft_lldi(t_conv **instruct, int total_bytes, t_label *labels);
-int				get_bytes_in_line(const char *line, int bytes);
+
+int				ft_ld(t_conv **instruct, int total_bytes , t_label *labels);
+int				ft_st(t_conv **instruct, int total_bytes, t_label *labels);
+int				ft_add(t_conv **instruct, int total_bytes,t_label *lables);
+int				ft_sub(t_conv **instruct, int total_bytes,t_label *lables);
+int				ft_zjmp(t_conv **instruct, int total_bytes, t_label *labels);
+int				ft_ldi(t_conv **instruct, int total_bytes, t_label *labels);
+
+int				ft_lld(t_conv **instruct, int total_bytes , t_label *labels);
+int				ft_lfork(t_conv **instruct, int total_bytes, t_label *labels);
+int				ft_aff(t_conv **instruct, int total_bytes,t_label *lables);
+int				ft_xor(t_conv **instruct, int total_bytes,t_label *lables);
+int				ft_fork(t_conv **instruct, int total_bytes,t_label *lables);
+void			show_conv_before(char *line);
+void			show_buffer_after(t_conv *line);
+
 #endif

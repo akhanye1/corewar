@@ -25,12 +25,23 @@ SRC_ASM		=	main.c					\
 				ft_lldi.c				\
 				ft_or.c					\
 				ft_xor.c				\
+				ft_ld.c					\
+				ft_st.c					\
+				ft_add.c				\
+				ft_sub.c				\
+				ft_zjmp.c				\
+				ft_ldi.c				\
+				ft_lld.c				\
+				ft_lfork.c				\
+				ft_aff.c				\
+				ft_fork.c				\
 				ft_params.c				\
 				ft_decoding.c			\
 				ft_get_encoding.c		\
 				numberconversion.c 		\
 				ft_labels.c				\
-				ft_getbytes.c				
+				ft_getbytes.c			\
+				ft_debug.c
 
 #SRC_PUSHS	= 	push_s.c				\
 				dosort.c

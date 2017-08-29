@@ -56,7 +56,7 @@ static void		init_struct(t_conv *temp, char *line)
 
 }
 
-static int		add_line(t_conv **data, char *line)
+static int		add_line(t_conv **data, char *line, char debug)
 {
 	t_conv	*temp;
 	t_conv	*iter;
@@ -65,12 +65,24 @@ static int		add_line(t_conv **data, char *line)
 		return (0);
 	init_struct(temp, line);
 	if (!(*data))
+	{
 		(*data) = temp;
+		if (debug)
+			show_buffer_after(temp);
+	}
 	else
 	{
 		iter = (*data);
+		if (debug)
+			show_buffer_after(iter);
 		while (iter->next)
+		{
 			iter = iter->next;
+			if (iter && debug)
+				show_buffer_after(iter);
+		}
+		if (debug)
+			show_buffer_after(temp);
 		iter->next = temp;
 	}
 	return (1);
@@ -80,6 +92,7 @@ static int		get_file(int fd, t_asm *data)
 {
 	char 	*line;
 	int		len;
+	char	*totrim;
 
 	line = NULL;
 	data->header.magic = 0xea83f3;
@@ -87,15 +100,26 @@ static int		get_file(int fd, t_asm *data)
 	ft_bzero(data->header.comment, COMMENT_LENGTH + 1);
 	data->header.prog_size = 180;
 	len = 0;
-	while (get_next_line(fd, &line) > 0)
+	if (data->debug)
+		ft_putendl("READING TO BUFFER (DATA ONLY)");	
+	while (get_next_line(fd, &totrim) > 0)
 	{
+		if (!(line = ft_strtrim(totrim)))
+			return (0);
 		if (ft_strncmp(line, ".name", ft_strlen(".name")) == 0)
 			ft_strncpy(data->header.prog_name, copy_quote(line, &len), len);
 		else if (ft_strncmp(line, ".comment", ft_strlen(".comment")) == 0)
 			ft_strncpy(data->header.comment, copy_quote(line, &len), len);
 		else if (ft_strlen(line) > 0)
-			add_line(&(data->line), line);
+		{
+			if (data->debug)
+				show_conv_before(line);
+			add_line(&(data->line), line, data->debug);
+		}
+		free(line);
 	}
+	if (data->debug)
+		ft_putline();
 	return (1);
 }
 
@@ -105,7 +129,7 @@ int update_conv(t_conv **line, int total_bytes, t_label *labels)
 	char 		*mne;
 	int 		i;
 	mne_func	functs[16]; 
-	void		*(f)(t_conv**, int, t_label*);
+	//void		*(f)(t_conv**, int, t_label*);
 
 	if (!(newstr = ft_strtrim((*line)->line)))
 		return (0);
@@ -122,7 +146,7 @@ int update_conv(t_conv **line, int total_bytes, t_label *labels)
 
 }
 
-int				convert_file(int fd)
+int				convert_file(int fd, char debug)
 {
 	char		*line;
 	t_asm		data;
@@ -133,14 +157,19 @@ int				convert_file(int fd)
 	total_bytes = 0;
 	line = NULL;
 	data.line = NULL;
+	data.debug = debug;
 	labels = NULL;
 	if (!get_file(fd, &data))
 		return (0);
 	iter = data.line;
 	create_all_lbls(&labels, &iter, total_bytes);
 	iter = data.line;
+	if (data.debug)
+		ft_putendl("Debug Information:");
 	while (iter)
 	{
+		if (data.debug)
+			show_conv_before(iter->line);
 		update_conv(&iter, total_bytes, labels);
 		total_bytes += iter->bytes;
 		iter = iter->next;

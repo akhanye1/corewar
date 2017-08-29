@@ -14,19 +14,21 @@
 
 int				main(int ac, char **av)
 {
-	int	fd;
+	int		fd;
+	char	debug;
 
-	if (ac != 2)
+	if ((ac == 3 && ft_strcmp(av[2], "-v")) && (ac <= 3 && ft_strcmp(av[2], "-v")))
 	{
-		ft_putstr("Usage: asm filename\n");
+		ft_putstr("Usage: asm <filename> [-v]\n");
 		return (0);
 	}
+	debug = (ac == 3) ? 1 : 0;	
 	if (!(fd = ft_fileok(av[1])))
 	{
 		ft_putstr("Usage: asm filename\nInvalid file\n");
 		return (0);
 	}
-	if (!convert_file(fd))
+	if (!convert_file(fd, debug))
 		ft_putstr("Error converting file\n");
 	close(fd);
 	return (0);
