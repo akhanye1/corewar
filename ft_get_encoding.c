@@ -17,6 +17,7 @@ unsigned char		ft_get_encoding(char *str)
 	int					i;
 	int					j;
 	char				**grid;
+	char				*defix;
 	static char			ret[9];
 
 	i = -1;
@@ -25,7 +26,8 @@ unsigned char		ft_get_encoding(char *str)
 	while (i < 7)
 		ret[++i] = '0';
 	i = -1;
-	grid = ft_strsplit(ft_strdefix(str, ' '), ',');
+	defix = ft_strdefix(str, ' ');
+	grid = ft_strsplit(defix, SEPARATOR_CHAR);
 	while (++i < 3)
 	{
 		ret[j] = (grid[i][0] == 'r') ? '0' : '1';
@@ -33,5 +35,7 @@ unsigned char		ft_get_encoding(char *str)
 		ret[j + 1] = (grid[i][0] == DIRECT_CHAR) ? '0' : '1';
 		j += 2;
 	}
+	ft_destroy_2d((void**)grid);
+	free(defix);
 	return (bintodec(ret));
 }

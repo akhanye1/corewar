@@ -6,32 +6,35 @@
 /*   By: jngoma <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 13:45:45 by jngoma            #+#    #+#             */
-/*   Updated: 2017/08/27 07:34:23 by jngoma           ###   ########.fr       */
+/*   Updated: 2017/08/28 13:22:39 by gtshekel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_corewar.h"
 
-char 		*ft_decoding(char *str, int n_params)
+void 		ft_decoding(t_conv **inst)
 {
-	int					i;
+	int					index;
 	int					j;
-	char				**grid;
-	static char			ret[4];
+	char				**split;
+	char				*trimmed;
 
-
-	i = -1;
+	index = 0;
 	j = -1;
-	ft_bzero(ret, 4);
-	grid = ft_strsplit(ft_strdefix(str, ' '), ',');
-	while (++i < n_params)
+	trimmed = ft_strtrim((*inst)->line);
+	while ((*inst)->line[index] && (*inst)->line[index] != ' ')
+		index++;
+	split = ft_strsplit(trimmed + index, SEPARATOR_CHAR);
+	free(trimmed);
+	index = -1;
+	while (++index < (*inst)->n_params)
 	{
-		if (grid[i][0] == 'r')
-			ret[++j] = REG_CODE;
-		else if (grid[i][0] == DIRECT_CHAR)
-			ret[++j] = DIR_CODE;
+		trimmed = ft_strtrim(split[index]);
+		if (trimmed[0] == 'r')
+			(*inst)->param_types[++j] =  REG_CODE;
 		else
-			ret[++j] = IND_CODE;
+			(*inst)->param_types[++j] = (trimmed[0] == DIRECT_CHAR ? DIR_CODE : IND_CODE);
+		free(trimmed);
 	}
-	return (ret);
+	ft_destroy_2d((void**)split);
 }

@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 10:30:52 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/26 16:42:20 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/29 09:31:34 by gtshekel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static char		*copy_quote(char *line, int *len)
 	int l;
 
 	i = -1;
-
 	while(line[++i] != '"')
 		;
 	start = i + 1;
@@ -36,7 +35,6 @@ static void		init_struct(t_conv *temp, char *line)
 
 	i = -1;
 	temp->line = ft_strdup(line);
-	temp->data = NULL;
 	temp->index = 0;
 	temp->bytes	= 0;
 	temp->haslabel = 0;
@@ -45,7 +43,6 @@ static void		init_struct(t_conv *temp, char *line)
 	temp->encoding = 0;
 	temp->n_params = 0;
 	temp->next = NULL;
-	temp->prev = NULL;
 	temp->dir_bytes = 0;
 	temp->indir_bytes = 0;
 	i = -1;
@@ -53,8 +50,8 @@ static void		init_struct(t_conv *temp, char *line)
 	{
 		temp->b_param[i] = 0;
 		temp->param[i] = 0;
+		temp->param_types[i] = 0;
 	}
-
 }
 
 static int		add_line(t_conv **data, char *line)
@@ -72,7 +69,6 @@ static int		add_line(t_conv **data, char *line)
 		iter = (*data);
 		while (iter->next)
 			iter = iter->next;
-		temp->prev = iter;
 		iter->next = temp;
 	}
 	return (1);
@@ -83,6 +79,7 @@ static int		get_file(int fd, t_asm *data)
 	char 	*line;
 	int		len;
 
+	line = NULL;
 	data->header.magic = 0xea83f3;
 	ft_bzero(data->header.prog_name, PROG_NAME_LENGTH + 1);
 	ft_bzero(data->header.comment, COMMENT_LENGTH + 1);
@@ -100,27 +97,27 @@ static int		get_file(int fd, t_asm *data)
 	return (1);
 }
 
-int update_conv(t_conv *line, int total_bytes, t_label *labels)
+int update_conv(t_conv **line, int total_bytes, t_label *labels)
 {
 	char		*newstr;
 	char 		*mne;
 	int 		i;
 	mne_func	functs[16]; 
-	void		*(f)(char*, int, t_label*);
+	void		*(f)(t_conv**, int, t_label*);
 
-	if (!(newstr = ft_strtrim((*line).line)))
+	if (!(newstr = ft_strtrim((*line)->line)))
 		return (0);
-	if ((*line).line)
-		free((*line).line);
+	if ((*line)->line)
+		free((*line)->line);
 	i = -1;
-	(*line).line = newstr;
+	(*line)->line = newstr;
 	while(newstr[++i] != ' ')
 		;
 	fill_opcode_array(functs);
 	mne = ft_strndup(newstr, i);
-	functs[(int)ft_get_opcode(mne) -1](line, total_bytes, labels);
+	functs[(int)ft_get_opcode(mne) - 1](line, total_bytes, labels);
+	free(mne);
 	return (0);
-
 }
 
 int				convert_file(int fd)
@@ -131,23 +128,23 @@ int				convert_file(int fd)
 	int			total_bytes;
 	t_conv 		*iter;
 
-	total_bytes = PROG_NAME_LENGTH + COMMENT_LENGTH;
+	total_bytes = 0;
 	line = NULL;
 	data.line = NULL;
 	labels = NULL;
 	if (!get_file(fd, &data))
 		return (0);
 	iter = data.line;
-
 	create_all_lbls(&labels, &iter, total_bytes);
 	iter = data.line;
-	total_bytes = PROG_NAME_LENGTH + COMMENT_LENGTH;
 	while (iter)
 	{
-		update_conv(iter, total_bytes, labels);
+		update_conv(&iter, total_bytes, labels);
 		total_bytes += iter->bytes;
 		iter = iter->next;
 	}
 	write_to_cor(&data);
+	//ft_destroy_labels(labels);
+	//ft_destroy_data(&data);
 	return (1);
 }

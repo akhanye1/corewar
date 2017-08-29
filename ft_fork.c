@@ -1,23 +1,36 @@
-int	ft_fork(t_conv *instruct, int total_bytes, t_label *labels)
-{
-	char *defix;
-	char **split;
-	char *decode;
-	int	i;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_fork.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pamashil <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/08/29 11:02:53 by pamashil          #+#    #+#             */
+/*   Updated: 2017/08/29 11:13:43 by pamashil         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-	if(!(defix = ft_strdefix(instruct->line, ' ')) || !(split = ft_strsplit(defix, ',')))
+#include "ft_corewar.h"
+
+int	ft_fork(t_conv **ins, int total_bytes, t_label *labels)
+{
+	char	**split;
+	char	*defix;
+	
+	defix = ft_strdefix((*ins)->line, ' ');
+	if (!(split = ft_strsplit(defix, SEPARATOR_CHAR)))
 		return(0);
-	if(!(instruct->opcode = ft_get_opcode("fork")))
+	if(!((*ins)->opcode = ft_get_opcode("fork")))
 		return(0);
-	instruct->bytes = 1;
-	instruct->haslabel = 1;
-	instruct->hasencoding = 0;
-	instruct->n_params = 1;
-	instruct->index = total_bytes + 1;
-	decode = ft_decoding(instruct->line);
-	fill_params(instruct, split, decode, labels);
-	i = -1;
-	while(++i < instruct->n_params)
-		instruct->bytes += instruct->b_params[i];
+	(*ins)->bytes = 3;
+	(*ins)->hasencoding = 0;
+	(*ins)->n_params = 1;
+	(*ins)->index = total_bytes + 1;
+	(*ins)->dir_bytes = IND_SIZE;
+	(*ins)->indir_bytes = IND_SIZE;
+	ft_decoding(ins);
+	fill_params(ins, split, labels);
+	ft_destroy_2d((void**)split);
+	free(defix);
 	return (1);
 }

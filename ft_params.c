@@ -6,7 +6,7 @@
 /*   By: mmayibo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 11:08:15 by mmayibo           #+#    #+#             */
-/*   Updated: 2017/08/26 14:09:19 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/28 13:22:52 by gtshekel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,33 +33,33 @@ int		ft_get_reg(char *val)
 	return (reg);
 }
 
-void	fill_params(t_conv *inst, char **splt, char *decode, t_label *labels)
+void	fill_params(t_conv **inst, char **splt, t_label *labels)
 {
 	int	i;
 
 	i = -1;
 	while(++i < 3)
 	{
-		if (decode[i] == '1')
+		if ((*inst)->param_types[i] == 1)
 		{
-			inst->b_param[i] = 1;
-			inst->param[i] = ft_get_reg(splt[i]);
+			(*inst)->b_param[i] = 1;
+			(*inst)->param[i] = ft_get_reg(splt[i]);
 		}
-		else if (decode[i] == '2')
+		else if ((*inst)->param_types[i] == 2)
 		{
-			inst->b_param[i] = inst->dir_bytes;
+			(*inst)->b_param[i] = (*inst)->dir_bytes;
 			if (needslabel(splt[i]))
-				inst->param[i] = get_lbl(splt[i], inst->index, labels);
+				(*inst)->param[i] = get_lbl(splt[i], (*inst)->index, labels);
 			else 
-				inst->param[i] = ft_get_dir(splt[i]);
+				(*inst)->param[i] = ft_get_dir(splt[i]);
 		}
-		else if (decode[i] == '3')
+		else if ((*inst)->param_types[i] == 3)
 		{
-			inst->b_param[i] = inst->indir_bytes;
+			(*inst)->b_param[i] = (*inst)->indir_bytes;
 			if (needslabel(splt[i]))
-				inst->param[i] = get_lbl(splt[i], inst->index, labels);
+				(*inst)->param[i] = get_lbl(splt[i], (*inst)->index, labels);
 			else 
-				inst->param[i] = ft_get_ind(splt[i]);
+				(*inst)->param[i] = ft_get_ind(splt[i]);
 		}
 	}
 }

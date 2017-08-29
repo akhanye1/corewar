@@ -6,34 +6,36 @@
 /*   By: jbadenho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/25 14:15:02 by jbadenho          #+#    #+#             */
-/*   Updated: 2017/08/26 16:08:17 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/28 17:19:18 by gtshekel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_corewar.h"
 
-int	ft_and(t_conv *instruct, int total_bytes, t_label *labels)
+int	ft_and(t_conv **ins, int total_bytes, t_label *labels)
 {
-	char	*defix;
 	char	**split;
-	char	*decode;
-	int	i;
+	char	*defix;
+	int		i;
 
-	if (!(defix = ft_strdefix(instruct->line, ' ')) || !(split = ft_strsplit(defix, ',')))
+	defix = ft_strdefix((*ins)->line, ' ');
+	if (!(split = ft_strsplit(defix, SEPARATOR_CHAR)))
 		return (0);
-	if (!(instruct->opcode = ft_get_opcode("and")))
+	if (!((*ins)->opcode = ft_get_opcode("and")))
 		return (0);
-	instruct->bytes = 2;
-	instruct->hasencoding = 1;
-	instruct->encoding = ft_get_encoding(instruct->line);
-	instruct->n_params = 3;
-	instruct->indir_bytes = IND_SIZE;
-	instruct->dir_bytes = DIR_SIZE;
-	instruct->index = total_bytes + 1;
-	decode = ft_decoding(instruct->line, instruct->n_params);
-	fill_params(instruct, split, decode, labels);
+	(*ins)->bytes = 2;
+	(*ins)->hasencoding = 1;
+	(*ins)->encoding = ft_get_encoding((*ins)->line);
+	(*ins)->n_params = 3;
+	(*ins)->indir_bytes = IND_SIZE;
+	(*ins)->dir_bytes = DIR_SIZE;
+	(*ins)->index = total_bytes + 1;
+	ft_decoding(ins);
+	fill_params(ins, split, labels);
 	i = -1;
-	while (++i < instruct->n_params)
-		instruct->bytes += instruct->b_param[i];
+	while (++i < (*ins)->n_params)
+		(*ins)->bytes += (*ins)->b_param[i];
+	ft_destroy_2d((void**)split);
+	free(defix);
 	return (1);
 }

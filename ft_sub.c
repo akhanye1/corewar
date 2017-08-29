@@ -1,26 +1,28 @@
 
 #include "ft_corewar.h"
 
-int	ft_sub(t_conv *instruct, int total_bytes)
+int	ft_sub(t_conv **ins, int total_bytes, t_label *labels)
 {
-	char	*defix;
 	char	**split;
-	char	*decode;
+	char	*defix;
 	int		i;
 
-	if (!(defix = ft_strdefix(instruct->line, ' ')) || !(split = ft_strsplit(defix, ',')))
+	defix = ft_strdefix((*ins)->line, ' ');
+	if (!(split = ft_strsplit(defix, SEPARATOR_CHAR)))
 		return (0);
-	if (!(instruct->opcode = ft_get_opcode("sub")))
+	if (!((*ins)->opcode = ft_get_opcode("sub")))
 		return (0);
-	instruct->bytes = 2;
-	instruct->hasencoding = 1;
-	instruct->encoding = ft_get_encoding(instruct->line);
-	instruct->n_params = 3;
-	decode = ft_decoding(instruct->line, instruct->n_params);
-	instruct->index = total_bytes + 1;
-	fill_params(instruct, split, decode);
+	(*ins)->bytes = 2;
+	(*ins)->hasencoding = 1;
+	(*ins)->encoding = ft_get_encoding((*ins)->line);
+	(*ins)->n_params = 3;
+	ft_decoding(ins);
+	(*ins)->index = total_bytes + 1;
+	fill_params(ins, split, labels);
 	i = -1;
-	while (++i < instruct->n_params)
-		instruct->bytes += instruct->b_param[i];
+	while (++i < (*ins)->n_params)
+		(*ins)->bytes += (*ins)->b_param[i];
+	ft_destroy_2d((void**)split);
+	free(defix);
 	return (1);
 }

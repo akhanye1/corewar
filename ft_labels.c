@@ -6,7 +6,7 @@
 /*   By: mmayibo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 13:45:46 by mmayibo           #+#    #+#             */
-/*   Updated: 2017/08/26 16:42:30 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/29 09:32:11 by gtshekel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int			ft_is_label_only(char *line)
 {
 	char	**split;
 
-	if (ft_strchr(line, ':'))
+	if (ft_strchr(line, LABEL_CHAR))
 	{
-		split = ft_strsplit(line, ':');
+		split = ft_strsplit(line, LABEL_CHAR);
 		if (ft_items_in_grid((void **)split) == 1)
 		{
 			ft_destroy_2d((void **)split);
@@ -39,7 +39,7 @@ int			ft_contains_label(char *line)
 	char **split;
 
 	split = ft_strsplit(line , ' ');
-	if (ft_strchr(split[0], ':'))
+	if (ft_strchr(split[0], LABEL_CHAR))
 	{
 		ft_destroy_2d((void **)split);
 		return (1);
@@ -56,9 +56,10 @@ t_label		*create_label(char **line, int total_bytes)
 
 	if (!(label = (t_label*)malloc(sizeof(t_label))))
 		return (NULL);
-	split = ft_strsplit(*line, ':');
+	split = ft_strsplit(*line, LABEL_CHAR);
 	label->name = ft_strdup(split[0]);
 	label->index = total_bytes + 1;
+	label->next = NULL;
 	lbl_len = ft_strlen(label->name);
 	tmp = ft_strtrim(*line);
 	free(*line);
@@ -76,7 +77,7 @@ void		add_label(t_label **label, t_label *new)
 
 int			needslabel(char *split)
 {
-	if (ft_strchr(split, ':'))
+	if (ft_strchr(split, LABEL_CHAR))
 		return (1);
 	return (0);
 }
@@ -88,7 +89,7 @@ int			get_lbl(char *item, int index, t_label *labels)
 	t_label	*tmp;
 
 	tmp = labels;
-	split = ft_strsplit(item, ':');
+	split = ft_strsplit(item, LABEL_CHAR);
 	num = ft_items_in_grid((void**)split);
 	while (tmp)
 	{
@@ -116,8 +117,7 @@ void		create_all_lbls(t_label **labels, t_conv **iter, int total_bytes)
 			if (ft_strequ((*iter)->line, ""))
 				*iter = (*iter)->next;
 		}
-		update_conv(*iter, total_bytes, *labels);
-		total_bytes += (*iter)->bytes;
+		total_bytes += get_bytes_in_line((*iter)->line, 0);
 		*iter = (*iter)->next;
 	}
 }
