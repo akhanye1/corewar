@@ -15,7 +15,7 @@
 
 int		ft_htoi(const char *s)
 {
-	unsigned long int	ret;
+	long int			ret;
 	int					index;
 
 	index = 0;

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sti.c                                           :+:      :+:    :+:   */
+/*   ft_lldi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmayibo <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: sletlape <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/24 09:32:02 by mmayibo           #+#    #+#             */
-/*   Updated: 2017/08/28 15:37:00 by gtshekel         ###   ########.fr       */
+/*   Created: 2017/08/26 10:45:51 by sletlape          #+#    #+#             */
+/*   Updated: 2017/08/28 13:49:47 by gtshekel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_corewar.h"
 
-int		ft_sti(t_conv **instruct, int total_bytes, t_label *labels)
+int		ft_lldi(t_conv **instruct, int total_bytes, t_label *labels)
 {
 	char	*defix;
 	char	**split;
@@ -21,7 +21,7 @@ int		ft_sti(t_conv **instruct, int total_bytes, t_label *labels)
 	if (!(defix = ft_strdefix((*instruct)->line, ' ')) ||
 			!(split = ft_strsplit(defix, ',')))
 		return (0);
-	if (!((*instruct)->opcode = ft_get_opcode("sti")))
+	if (!((*instruct)->opcode = ft_get_opcode("lldi")))
 		return (0);
 	(*instruct)->bytes = 2;
 	(*instruct)->hasencoding = 1;

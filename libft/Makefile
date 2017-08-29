@@ -6,7 +6,7 @@
 #    By: akhanye <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/30 10:25:20 by akhanye           #+#    #+#              #
-#    Updated: 2017/08/22 08:28:45 by jngoma           ###   ########.fr        #
+#    Updated: 2017/08/25 16:37:02 by jngoma           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,7 +92,6 @@ SRC		= 	$(INCL)ft_isalnum.c	\
 			$(INCL)ft_inarray.c		\
 			$(INCL)ft_freestrsplit.c\
 			$(INCL)ft_strdefix.c\
-			$(INCL)ft_strshrink.c\
 			$(INCL)ft_strdesplit.c\
 			$(INCL)ft_strcuthead.c\
  			$(INCL)ft_addnbr.c\
@@ -103,7 +102,8 @@ SRC		= 	$(INCL)ft_isalnum.c	\
 			$(INCL)ft_htoi.c\
  			$(INCL)ft_items_in_grid.c\
  			$(INCL)ft_contains_str.c\
- 			$(INCL)ft_out_of_int_range.c
+ 			$(INCL)ft_out_of_int_range.c\
+ 			$(INCL)ft_strndup.c
 
 
 OBJ		= 	ft_isalnum.o	\
@@ -183,7 +183,6 @@ OBJ		= 	ft_isalnum.o	\
 			ft_inarray.o		\
 			ft_freestrsplit.o\
 			ft_strdefix.o\
-			ft_strshrink.o\
 			ft_strdesplit.o\
 			ft_strcuthead.o\
  			ft_addnbr.o\
@@ -194,9 +193,9 @@ OBJ		= 	ft_isalnum.o	\
 			ft_htoi.o\
  			ft_items_in_grid.o\
  			ft_contains_str.o\
- 			ft_out_of_int_range.o
+ 			ft_out_of_int_range.o\
+			ft_strndup.o
 
-			
 
 FLAGS	=	-Wall -Wextra -Werror
 
