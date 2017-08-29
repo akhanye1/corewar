@@ -56,7 +56,7 @@ static void		init_struct(t_conv *temp, char *line)
 
 }
 
-static int		add_line(t_conv **data, char *line, char debug)
+static int		add_line(t_conv **data, char *line)
 {
 	t_conv	*temp;
 	t_conv	*iter;
@@ -65,24 +65,12 @@ static int		add_line(t_conv **data, char *line, char debug)
 		return (0);
 	init_struct(temp, line);
 	if (!(*data))
-	{
 		(*data) = temp;
-		if (debug)
-			show_buffer_after(temp);
-	}
 	else
 	{
 		iter = (*data);
-		if (debug)
-			show_buffer_after(iter);
 		while (iter->next)
-		{
 			iter = iter->next;
-			if (iter && debug)
-				show_buffer_after(iter);
-		}
-		if (debug)
-			show_buffer_after(temp);
 		iter->next = temp;
 	}
 	return (1);
@@ -100,8 +88,6 @@ static int		get_file(int fd, t_asm *data)
 	ft_bzero(data->header.comment, COMMENT_LENGTH + 1);
 	data->header.prog_size = 180;
 	len = 0;
-	if (data->debug)
-		ft_putendl("READING TO BUFFER (DATA ONLY)");	
 	while (get_next_line(fd, &totrim) > 0)
 	{
 		if (!(line = ft_strtrim(totrim)))
@@ -111,24 +97,18 @@ static int		get_file(int fd, t_asm *data)
 		else if (ft_strncmp(line, ".comment", ft_strlen(".comment")) == 0)
 			ft_strncpy(data->header.comment, copy_quote(line, &len), len);
 		else if (ft_strlen(line) > 0)
-		{
-			if (data->debug)
-				show_conv_before(line);
-			add_line(&(data->line), line, data->debug);
-		}
+			add_line(&(data->line), line);
 		free(line);
 	}
-	if (data->debug)
-		ft_putline();
 	return (1);
 }
 
-int update_conv(t_conv **line, int total_bytes, t_label *labels)
+int update_conv(t_conv **line, int total_bytes, t_label *labels, mne_func *functs)
 {
 	char		*newstr;
 	char 		*mne;
 	int 		i;
-	mne_func	functs[16]; 
+	//mne_func	functs[16]; 
 	//void		*(f)(t_conv**, int, t_label*);
 
 	if (!(newstr = ft_strtrim((*line)->line)))
@@ -139,7 +119,6 @@ int update_conv(t_conv **line, int total_bytes, t_label *labels)
 	(*line)->line = newstr;
 	while(newstr[++i] != ' ')
 		;
-	fill_opcode_array(functs);
 	mne = ft_strndup(newstr, i);
 	functs[(int)ft_get_opcode(mne) - 1](line, total_bytes, labels);
 	return (0);
@@ -153,6 +132,7 @@ int				convert_file(int fd, char debug)
 	t_label		*labels;
 	int			total_bytes;
 	t_conv 		*iter;
+	mne_func	functs[16];
 
 	total_bytes = 0;
 	line = NULL;
@@ -161,17 +141,34 @@ int				convert_file(int fd, char debug)
 	labels = NULL;
 	if (!get_file(fd, &data))
 		return (0);
+	if (data.debug)
+	{
+		ft_putendl("\n\nDATA IN BUFFER\n");
+		iter = data.line;
+		while (iter)
+		{
+			ft_putendl(iter->line);
+			iter = iter->next;
+		}
+		ft_putline();
+	}
 	iter = data.line;
 	create_all_lbls(&labels, &iter, total_bytes);
 	iter = data.line;
+	fill_opcode_array(functs);
 	if (data.debug)
 		ft_putendl("Debug Information:");
 	while (iter)
 	{
-		if (data.debug)
+		if (data.debug && iter->line && ft_strlen(iter->line))
 			show_conv_before(iter->line);
-		update_conv(&iter, total_bytes, labels);
-		total_bytes += iter->bytes;
+		if (iter->line && ft_strlen(iter->line))
+		{
+			update_conv(&iter, total_bytes, labels, functs);
+			if (data.debug)
+				show_hex(iter);
+			total_bytes += iter->bytes;
+		}
 		iter = iter->next;
 	}
 	write_to_cor(&data);

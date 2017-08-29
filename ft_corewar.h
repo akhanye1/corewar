@@ -68,7 +68,7 @@ void			fill_params(t_conv **instruct, char **split, t_label *labels);
 void			create_all_lbls(t_label **labels, t_conv **iter, int total_bytes);
 int				needslabel(char *split);
 int				get_lbl(char *item, int index, t_label *labels);
-int				update_conv(t_conv **line, int total_bytes, t_label *labels);
+int				update_conv(t_conv **line, int total_bytes, t_label *labels, mne_func *funct);
 int				get_bytes_in_line(const char *line, int bytes);
 
 int				ft_sti(t_conv **instruct, int total_bytes , t_label *labels);
@@ -92,5 +92,6 @@ int				ft_xor(t_conv **instruct, int total_bytes,t_label *lables);
 int				ft_fork(t_conv **instruct, int total_bytes,t_label *lables);
 void			show_conv_before(char *line);
 void			show_buffer_after(t_conv *line);
+void			show_hex(t_conv *conv);
 
 #endif
