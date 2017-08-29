@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 21:04:42 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/23 10:16:55 by akhanye          ###   ########.fr       */
+/*   Updated: 2017/08/28 09:48:16 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int				main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		ft_putstr("Usage: asm filename\n");
+		ft_putstr("Usage:\n./asm file_name[.s] ...\n");
 		return (0);
 	}
 	if (!(fd = ft_fileok(av[1])))
