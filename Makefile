@@ -6,7 +6,7 @@
 #    By: akhanye <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/30 10:25:20 by akhanye           #+#    #+#              #
-#    Updated: 2017/08/28 15:44:37 by gtshekel         ###   ########.fr        #
+#    Updated: 2017/08/29 10:57:25 by pamashil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,13 @@ SRC_ASM		=	main.c					\
 				ft_fileok.c				\
 				opcode.c				\
 				ft_write.c				\
+				ft_decoding.c			\
+				ft_params.c				\
+				ft_get_encoding.c		\
+				ft_labels.c				\
 				convert.c				\
+				ft_lfork.c				\
+				ft_fork.c				\
 				ft_sti.c				\
 				ft_live.c				\
 				ft_and.c				\
@@ -32,16 +38,10 @@ SRC_ASM		=	main.c					\
 				ft_zjmp.c				\
 				ft_ldi.c				\
 				ft_lld.c				\
-				ft_lfork.c				\
 				ft_aff.c				\
-				ft_fork.c				\
-				ft_params.c				\
-				ft_decoding.c			\
-				ft_get_encoding.c		\
-				numberconversion.c 		\
-				ft_labels.c				\
 				ft_getbytes.c			\
-				ft_debug.c
+				ft_debug.c				\
+				numberconversion.c
 
 #SRC_PUSHS	= 	push_s.c				\
 				dosort.c

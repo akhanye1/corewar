@@ -24,7 +24,7 @@ void 		ft_decoding(t_conv **inst)
 	trimmed = ft_strtrim((*inst)->line);
 	while ((*inst)->line[index] && (*inst)->line[index] != ' ')
 		index++;
-	split = ft_strsplit(trimmed + index, ',');
+	split = ft_strsplit(trimmed + index, SEPARATOR_CHAR);
 	free(trimmed);
 	index = -1;
 	while (++index < (*inst)->n_params)

@@ -6,12 +6,12 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 23:40:00 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/28 15:46:52 by gtshekel         ###   ########.fr       */
+/*   Updated: 2017/08/29 10:56:49 by pamashil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PUSH_SWAP_H
-# define FT_PUSH_SWAP_H
+#ifndef FT_COREWAR_H
+# define FT_COREWAR_H
 
 # include "op.h"
 # include "libft/libft.h"
@@ -48,7 +48,7 @@ typedef struct		s_asm
 	header_t	header;
 }					t_asm;
 
-typedef int 	(*mne_func)(t_conv **, int, t_label*);
+typedef int (*mne_func)(t_conv **, int, t_label*);
 int				ft_fileok(char *filename);
 unsigned char	ft_get_opcode(char *str);
 void			write_to_cor(t_asm *data);
@@ -88,7 +88,6 @@ int				ft_ldi(t_conv **instruct, int total_bytes, t_label *labels);
 int				ft_lld(t_conv **instruct, int total_bytes , t_label *labels);
 int				ft_lfork(t_conv **instruct, int total_bytes, t_label *labels);
 int				ft_aff(t_conv **instruct, int total_bytes,t_label *lables);
-int				ft_xor(t_conv **instruct, int total_bytes,t_label *lables);
 int				ft_fork(t_conv **instruct, int total_bytes,t_label *lables);
 void			show_conv_before(char *line);
 void			show_buffer_after(t_conv *line);

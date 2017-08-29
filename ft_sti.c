@@ -6,7 +6,7 @@
 /*   By: mmayibo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 09:32:02 by mmayibo           #+#    #+#             */
-/*   Updated: 2017/08/28 15:37:00 by gtshekel         ###   ########.fr       */
+/*   Updated: 2017/08/29 08:57:25 by gtshekel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ int		ft_sti(t_conv **instruct, int total_bytes, t_label *labels)
 	i = -1;
 	while (++i < (*instruct)->n_params)
 		(*instruct)->bytes += (*instruct)->b_param[i];
+	ft_destroy_2d((void**)split);
+	free(defix);
 	return (1);
 }

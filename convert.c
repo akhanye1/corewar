@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 10:30:52 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/28 16:28:32 by gtshekel         ###   ########.fr       */
+/*   Updated: 2017/08/29 09:31:34 by gtshekel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static char		*copy_quote(char *line, int *len)
 	int l;
 
 	i = -1;
-
 	while(line[++i] != '"')
 		;
 	start = i + 1;
@@ -53,7 +52,6 @@ static void		init_struct(t_conv *temp, char *line)
 		temp->param[i] = 0;
 		temp->param_types[i] = 0;
 	}
-
 }
 
 static int		add_line(t_conv **data, char *line)
@@ -108,8 +106,6 @@ int update_conv(t_conv **line, int total_bytes, t_label *labels, mne_func *funct
 	char		*newstr;
 	char 		*mne;
 	int 		i;
-	//mne_func	functs[16]; 
-	//void		*(f)(t_conv**, int, t_label*);
 
 	if (!(newstr = ft_strtrim((*line)->line)))
 		return (0);
@@ -121,6 +117,7 @@ int update_conv(t_conv **line, int total_bytes, t_label *labels, mne_func *funct
 		;
 	mne = ft_strndup(newstr, i);
 	functs[(int)ft_get_opcode(mne) - 1](line, total_bytes, labels);
+	free(mne);
 	return (0);
 
 }

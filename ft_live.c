@@ -16,7 +16,6 @@ int		ft_live(t_conv **instruct, int total_bytes, t_label *labels)
 {
 	char	*defix;
 	char	**split;
-	int		i;
 
 	if (!(defix = ft_strdefix((*instruct)->line, ' ')) ||
 			!(split = ft_strsplit(defix, ',')))
@@ -31,6 +30,7 @@ int		ft_live(t_conv **instruct, int total_bytes, t_label *labels)
 	(*instruct)->dir_bytes = DIR_SIZE;
 	ft_decoding(instruct);
 	fill_params(instruct, split, labels);
-	i = -1;
+	ft_destroy_2d((void**)split);
+	free(defix);
 	return (1);
 }

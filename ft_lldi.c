@@ -35,5 +35,7 @@ int		ft_lldi(t_conv **instruct, int total_bytes, t_label *labels)
 	i = -1;
 	while (++i < (*instruct)->n_params)
 		(*instruct)->bytes += (*instruct)->b_param[i];
+	ft_destroy_2d((void**)split);
+	free(defix);
 	return (1);
 }

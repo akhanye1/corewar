@@ -6,7 +6,7 @@
 /*   By: jngoma <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/25 17:06:59 by jngoma            #+#    #+#             */
-/*   Updated: 2017/08/28 13:50:48 by gtshekel         ###   ########.fr       */
+/*   Updated: 2017/08/29 09:01:48 by gtshekel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ int		ft_or(t_conv **instruct, int total_bytes, t_label *labels)
 	i = -1;
 	while (++i < (*instruct)->n_params)
 		(*instruct)->bytes += (*instruct)->b_param[i];
+	ft_destroy_2d((void**)split);
 	return (1);
 }
