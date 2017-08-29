@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 23:40:00 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/28 08:13:19 by amatshiy         ###   ########.fr       */
+/*   Updated: 2017/08/29 07:42:42 by ssekese          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,5 @@ int				update_conv(t_conv *line, int total_bytes, t_label *labels);
 int				ft_live(t_conv *instruct, int total_bytes, t_label *labels);
 int				ft_lld(t_conv *instruct, int total_bytes, t_label *labels);
 int				ft_lldi(t_conv *instruct, int total_bytes, t_label *labels);
+int				ft_ld(t_conv *instruct, int total_bytes, t_label *labels);
 #endif
