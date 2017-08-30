@@ -12,29 +12,33 @@
 
 #include "ft_corewar.h"
 
-int     ft_ld(t_conv *instruct, int total_bytes, t_label *labels)
+int     ft_ld(t_conv **instruct, int total_bytes, t_label *labels)
 {
 	char    *defix;
 	char    **split;
-	char    *decode;
 	int     i;
 
-	if (!(defix = ft_strdefix(instruct->line, ' ')) ||
+	if (!(defix = ft_strdefix((*instruct)->line, ' ')) ||
 			!(split = ft_strsplit(defix, ',')))
 		return (0);
-	if (!(instruct->opcode = ft_get_opcode("ld")))
+	if (!((*instruct)->opcode = ft_get_opcode("ld")))
 		return (0);
-	instruct->bytes = 2;
-	instruct->hasencoding = 1;
-	instruct->encoding = ft_get_encoding(instruct->line);
-	instruct->n_params = 2;
-	instruct->index = total_bytes + 1;
-	instruct->indir_bytes = IND_SIZE;
-	instruct->dir_bytes = DIR_SIZE;
-	decode = ft_decoding(instruct->line, instruct->n_params);
-	fill_params(instruct, split, decode, labels);
+	(*instruct)->bytes = 2;
+	(*instruct)->hasencoding = 1;
+	(*instruct)->encoding = ft_get_encoding((*instruct)->line);
+	ft_putstr("Load incoding : ");
+	ft_putchar((char)(*instruct)->encoding);
+	ft_putline();
+	(*instruct)->n_params = 2;
+	(*instruct)->index = total_bytes + 1;
+	(*instruct)->indir_bytes = IND_SIZE;
+	(*instruct)->dir_bytes = DIR_SIZE;
+	ft_decoding(instruct);
+	fill_params(instruct, split, labels);
 	i = -1;
-	while (++i < instruct->n_params)
-		instruct->bytes += instruct->b_param[i];
+	while (++i < (*instruct)->n_params)
+		(*instruct)->bytes += (*instruct)->b_param[i];
+	ft_freestrsplit(split);
+	free(defix);
 	return (1);
 }
