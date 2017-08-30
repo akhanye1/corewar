@@ -38,7 +38,7 @@ void	fill_params(t_conv **inst, char **splt, t_label *labels)
 	int	i;
 
 	i = -1;
-	while(++i < 3)
+	while(++i < (*inst)->n_params)
 	{
 		if ((*inst)->param_types[i] == 1)
 		{

@@ -122,13 +122,25 @@ int update_conv(t_conv **line, int total_bytes, t_label *labels, mne_func *funct
 		free((*line)->line);
 	i = -1;
 	(*line)->line = newstr;
-	while(newstr[++i] != ' ')
+	while(newstr[++i] != ' ' && newstr[i] != '\t')
 		;
 	mne = ft_strndup(newstr, i);
 	functs[(int)ft_get_opcode(mne) - 1](line, total_bytes, labels);
 	free(mne);
 	return (0);
 
+}
+
+static void		remove_tabs(char *line)
+{
+	int i;
+
+	i = -1;
+	while (line[++i])
+	{
+		if (line[i] == '\t')
+			line[i] = ' ';
+	}
 }
 
 int				convert_file(int fd, char debug)
@@ -166,6 +178,7 @@ int				convert_file(int fd, char debug)
 		ft_putendl("Debug Information:");
 	while (iter)
 	{
+		remove_tabs(iter->line);
 		if (data.debug && iter->line && ft_strlen(iter->line))
 			show_conv_before(iter->line);
 		if (iter->line && ft_strlen(iter->line))

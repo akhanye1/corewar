@@ -26,15 +26,14 @@ int     ft_ld(t_conv **instruct, int total_bytes, t_label *labels)
 	(*instruct)->bytes = 2;
 	(*instruct)->hasencoding = 1;
 	(*instruct)->encoding = ft_get_encoding((*instruct)->line);
-	ft_putstr("Load incoding : ");
-	ft_putchar((char)(*instruct)->encoding);
-	ft_putline();
 	(*instruct)->n_params = 2;
 	(*instruct)->index = total_bytes + 1;
 	(*instruct)->indir_bytes = IND_SIZE;
 	(*instruct)->dir_bytes = DIR_SIZE;
 	ft_decoding(instruct);
+	ft_putendl("debug 1");
 	fill_params(instruct, split, labels);
+	ft_putendl("debug 2");
 	i = -1;
 	while (++i < (*instruct)->n_params)
 		(*instruct)->bytes += (*instruct)->b_param[i];

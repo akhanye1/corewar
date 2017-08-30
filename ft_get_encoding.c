@@ -28,7 +28,7 @@ unsigned char		ft_get_encoding(char *str)
 	i = -1;
 	defix = ft_strdefix(str, ' ');
 	grid = ft_strsplit(defix, SEPARATOR_CHAR);
-	while (++i < 3)
+	while(grid[++i])
 	{
 		ret[j] = (grid[i][0] == 'r') ? '0' : '1';
 		ret[j + 1] = (grid[i][0] == 'r') ? '1' : 0;

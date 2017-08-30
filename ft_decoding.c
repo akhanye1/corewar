@@ -21,19 +21,23 @@ void 		ft_decoding(t_conv **inst)
 
 	index = 0;
 	j = -1;
-	trimmed = ft_strtrim((*inst)->line);
-	while ((*inst)->line[index] && (*inst)->line[index] != ' ')
+	if (!(trimmed = ft_strtrim((*inst)->line)))
+		return ;
+	while ((*inst)->line[index] && (((*inst)->line[index] != ' ') &&
+				((*inst)->line[index] != '\t')))
 		index++;
-	split = ft_strsplit(trimmed + index, SEPARATOR_CHAR);
+	if (!(split = ft_strsplit(trimmed + index, SEPARATOR_CHAR)))
+		return ;
 	free(trimmed);
 	index = -1;
 	while (++index < (*inst)->n_params)
 	{
-		trimmed = ft_strtrim(split[index]);
+		if (!(trimmed = ft_strtrim(split[index])))
+			return ;
 		if (trimmed[0] == 'r')
 			(*inst)->param_types[++j] =  REG_CODE;
 		else
-			(*inst)->param_types[++j] = (trimmed[0] == DIRECT_CHAR ? DIR_CODE : IND_CODE);
+			(*inst)->param_types[++j] = (trimmed[0] == DIRECT_CHAR) ? DIR_CODE : IND_CODE;
 		free(trimmed);
 	}
 	ft_destroy_2d((void**)split);
