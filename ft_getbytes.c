@@ -30,7 +30,6 @@ int			get_bytes_in_line(const char *s, int bytes)
 	while (op != 1 && sp2[++index])
 	{
 		trimmed = ft_strtrim(sp2[index]);
-		printf("%s\n",trimmed);
 		if (trimmed[0] == DIRECT_CHAR)
 			bytes += (op < 9 || op == 13 || op == 16 ? DIR_SIZE : IND_SIZE);
 		else

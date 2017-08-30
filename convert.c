@@ -79,6 +79,7 @@ static int		get_file(int fd, t_asm *data)
 	char 	*line;
 	int		len;
 	char	*totrim;
+	char	*temp;
 
 	line = NULL;
 	data->header.magic = 0xea83f3;
@@ -90,11 +91,19 @@ static int		get_file(int fd, t_asm *data)
 	{
 		if (!(line = ft_strtrim(totrim)))
 			return (0);
+		if (ft_strchr(line, COMMENT_CHAR))
+		{
+			temp = ft_strnew(ft_strlen(line));
+			ft_strncpy(temp, line, (ft_strchr(line, COMMENT_CHAR) - line));
+			free(line);
+			line = ft_strtrim(temp);
+			free(temp);
+		}
 		if (ft_strncmp(line, ".name", ft_strlen(".name")) == 0)
 			ft_strncpy(data->header.prog_name, copy_quote(line, &len), len);
 		else if (ft_strncmp(line, ".comment", ft_strlen(".comment")) == 0)
 			ft_strncpy(data->header.comment, copy_quote(line, &len), len);
-		else if (ft_strlen(line) > 0)
+		else if (ft_strlen(line) > 0 && line[0] != '#' && line[0] != '.')
 			add_line(&(data->line), line);
 		free(line);
 	}
