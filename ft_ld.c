@@ -31,9 +31,7 @@ int     ft_ld(t_conv **instruct, int total_bytes, t_label *labels)
 	(*instruct)->indir_bytes = IND_SIZE;
 	(*instruct)->dir_bytes = DIR_SIZE;
 	ft_decoding(instruct);
-	ft_putendl("debug 1");
 	fill_params(instruct, split, labels);
-	ft_putendl("debug 2");
 	i = -1;
 	while (++i < (*instruct)->n_params)
 		(*instruct)->bytes += (*instruct)->b_param[i];
