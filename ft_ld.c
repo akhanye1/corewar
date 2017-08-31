@@ -6,7 +6,7 @@
 /*   By: ssekese <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 12:16:27 by ssekese           #+#    #+#             */
-/*   Updated: 2017/08/29 07:39:51 by ssekese          ###   ########.fr       */
+/*   Updated: 2017/08/31 18:22:36 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int     ft_ld(t_conv **instruct, int total_bytes, t_label *labels)
 	(*instruct)->n_params = 2;
 	(*instruct)->index = total_bytes + 1;
 	(*instruct)->indir_bytes = IND_SIZE;
-	(*instruct)->dir_bytes = DIR_SIZE;
+	(*instruct)->dir_bytes = IND_SIZE;
 	ft_decoding(instruct);
 	fill_params(instruct, split, labels);
 	i = -1;
