@@ -6,7 +6,7 @@
 /*   By: ssekese <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 12:16:27 by ssekese           #+#    #+#             */
-/*   Updated: 2017/08/31 18:22:36 by amatshiy         ###   ########.fr       */
+/*   Updated: 2017/08/31 18:25:15 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int     ft_ld(t_conv **instruct, int total_bytes, t_label *labels)
 	i = -1;
 	while (++i < (*instruct)->n_params)
 		(*instruct)->bytes += (*instruct)->b_param[i];
-	ft_freestrsplit(split);
+	ft_destroy_2d((void**)split);
 	free(defix);
 	return (1);
 }
