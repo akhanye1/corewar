@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 10:30:52 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/29 09:31:34 by gtshekel         ###   ########.fr       */
+/*   Updated: 2017/09/01 08:52:30 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ int update_conv(t_conv **line, int total_bytes, t_label *labels, mne_func *funct
 
 }
 
-int				convert_file(int fd, char debug)
+int				convert_file(int fd, char debug, char *fn)
 {
 	char		*line;
 	t_asm		data;
@@ -159,6 +159,7 @@ int				convert_file(int fd, char debug)
 
 	total_bytes = 0;
 	line = NULL;
+	data.fn = fn;
 	data.line = NULL;
 	data.debug = debug;
 	labels = NULL;

@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 10:26:34 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/26 14:24:50 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/09/01 10:04:49 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,12 @@ void			write_to_cor(t_asm *data)
 	unsigned char	*line;
 	unsigned char	byte[5];
 	t_conv			*iter;
+	char 			*fncor;
 
+
+	fncor =  get_fn_cor(data->fn);
 	ft_bzero(byte, 5);
-	if ((lfd = open("test.cor", O_CREAT | O_WRONLY , S_IWUSR | S_IRUSR)) == -1)
+	if ((lfd = open(fncor, O_CREAT | O_WRONLY , S_IWUSR | S_IRUSR)) == -1)
 	{
 		ft_putendl("File not created");
 		return ;
@@ -71,5 +74,8 @@ void			write_to_cor(t_asm *data)
 		write_conv_data(iter, lfd);
 		iter = iter->next;
 	}
+	ft_putstr(data->fn);
+	ft_putendl(" successfully converted");
+	free(fncor);
 	close(lfd);
 }
