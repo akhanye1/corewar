@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 10:30:52 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/29 09:31:34 by gtshekel         ###   ########.fr       */
+/*   Updated: 2017/09/01 12:37:49 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ int update_conv(t_conv **line, int total_bytes, t_label *labels, mne_func *funct
 
 }
 
-static void		remove_tabs(char *line)
+void		remove_tabs(char *line)
 {
 	int i;
 

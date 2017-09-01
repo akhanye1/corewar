@@ -6,7 +6,7 @@
 /*   By: mmayibo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 13:45:46 by mmayibo           #+#    #+#             */
-/*   Updated: 2017/08/29 09:32:11 by gtshekel         ###   ########.fr       */
+/*   Updated: 2017/09/01 12:38:29 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ void		create_all_lbls(t_label **labels, t_conv **iter, int total_bytes)
 
 	while (*iter)
 	{
+		remove_tabs((*iter)->line);
 		if (ft_is_label_only((*iter)->line) || ft_contains_label((*iter)->line))
 		{
 			if (*labels == NULL)

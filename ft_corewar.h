@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 23:40:00 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/29 10:56:49 by pamashil         ###   ########.fr       */
+/*   Updated: 2017/09/01 12:35:57 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,5 @@ int				ft_fork(t_conv **instruct, int total_bytes,t_label *lables);
 void			show_conv_before(char *line);
 void			show_buffer_after(t_conv *line);
 void			show_hex(t_conv *conv);
-
+void			remove_tabs(char *line);
 #endif
