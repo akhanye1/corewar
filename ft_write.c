@@ -46,10 +46,10 @@ void			write_to_cor(t_asm *data)
 {
 	int				lfd;
 	unsigned char	*line;
-	unsigned char	byte[4];
+	unsigned char	byte[5];
 	t_conv			*iter;
 
-	ft_bzero(byte, 4);
+	ft_bzero(byte, 5);
 	if ((lfd = open("test.cor", O_CREAT | O_WRONLY , S_IWUSR | S_IRUSR)) == -1)
 	{
 		ft_putendl("File not created");

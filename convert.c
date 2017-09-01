@@ -74,6 +74,23 @@ static int		add_line(t_conv **data, char *line)
 	return (1);
 }
 
+static int	count_all_bytes(t_asm *data)
+{
+	int		b;
+	t_conv	*iter;
+
+	b = 0;
+	if (!data->line)
+		return (b);
+	iter = data->line;
+	while (iter)
+	{
+		b += iter->bytes;
+		iter = iter->next;
+	}
+	return (b);
+}
+
 static int		get_file(int fd, t_asm *data)
 {
 	char 	*line;
@@ -85,7 +102,7 @@ static int		get_file(int fd, t_asm *data)
 	data->header.magic = 0xea83f3;
 	ft_bzero(data->header.prog_name, PROG_NAME_LENGTH + 1);
 	ft_bzero(data->header.comment, COMMENT_LENGTH + 1);
-	data->header.prog_size = 180;
+	data->header.prog_size = 0;
 	len = 0;
 	while (get_next_line(fd, &totrim) > 0)
 	{
@@ -129,18 +146,6 @@ int update_conv(t_conv **line, int total_bytes, t_label *labels, mne_func *funct
 	free(mne);
 	return (0);
 
-}
-
-static void		remove_tabs(char *line)
-{
-	int i;
-
-	i = -1;
-	while (line[++i])
-	{
-		if (line[i] == '\t')
-			line[i] = ' ';
-	}
 }
 
 int				convert_file(int fd, char debug)
@@ -190,6 +195,7 @@ int				convert_file(int fd, char debug)
 		}
 		iter = iter->next;
 	}
+	data.header.prog_size = (unsigned int)count_all_bytes(&data);
 	write_to_cor(&data);
 	return (1);
 }

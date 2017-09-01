@@ -6,7 +6,7 @@
 /*   By: mmayibo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 15:42:21 by mmayibo           #+#    #+#             */
-/*   Updated: 2017/08/29 11:49:18 by pamashil         ###   ########.fr       */
+/*   Updated: 2017/08/31 16:16:12 by jngoma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int			get_bytes_in_line(const char *s, int bytes)
 			bytes += (trimmed[0] == 'r' ? 1 : IND_SIZE);
 		free(trimmed);
 	}
+	//printf("opcode(%d) :  %s is = %d\n",(int)op,s,bytes);
 	ft_destroy_2d((void**)sp);
 	ft_destroy_2d((void**)sp2);
 	return (bytes);

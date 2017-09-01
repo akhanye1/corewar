@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 21:04:42 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/26 16:26:33 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/08/31 14:39:48 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@ int				main(int ac, char **av)
 	int		fd;
 	char	debug;
 
-	if ((ac == 3 && ft_strcmp(av[2], "-v")) && (ac <= 3 && ft_strcmp(av[2], "-v")))
+	if (((ac == 3 && ft_strcmp(av[2], "-v")) &&
+				(ac <= 3 && ft_strcmp(av[2], "-v")))
+				|| (ac == 1))
 	{
 		ft_putstr("Usage: asm <filename> [-v]\n");
 		return (0);
 	}
-	debug = (ac == 3) ? 1 : 0;	
+	debug = (ac == 3) ? 1 : 0;
 	if (!(fd = ft_fileok(av[1])))
 	{
 		ft_putstr("Usage: asm filename\nInvalid file\n");

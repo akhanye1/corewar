@@ -28,8 +28,8 @@ int     ft_ld(t_conv **instruct, int total_bytes, t_label *labels)
 	(*instruct)->encoding = ft_get_encoding((*instruct)->line);
 	(*instruct)->n_params = 2;
 	(*instruct)->index = total_bytes + 1;
-	(*instruct)->indir_bytes = IND_SIZE;
-	(*instruct)->dir_bytes = DIR_SIZE;
+	(*instruct)->indir_bytes = T_IND;
+	(*instruct)->dir_bytes = T_IND;
 	ft_decoding(instruct);
 	fill_params(instruct, split, labels);
 	i = -1;

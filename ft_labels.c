@@ -106,8 +106,11 @@ int			get_lbl(char *item, int index, t_label *labels)
 
 void		create_all_lbls(t_label **labels, t_conv **iter, int total_bytes)
 {
+	char	*trimmed;
+
 	while (*iter)
 	{
+		remove_tabs((*iter)->line);
 		if (ft_is_label_only((*iter)->line) || ft_contains_label((*iter)->line))
 		{
 			if (*labels == NULL)
@@ -117,6 +120,9 @@ void		create_all_lbls(t_label **labels, t_conv **iter, int total_bytes)
 			if (ft_strequ((*iter)->line, ""))
 				*iter = (*iter)->next;
 		}
+		trimmed = ft_strtrim((*iter)->line);
+		free((*iter)->line);
+		((*iter)->line) = trimmed;
 		total_bytes += get_bytes_in_line((*iter)->line, 0);
 		*iter = (*iter)->next;
 	}

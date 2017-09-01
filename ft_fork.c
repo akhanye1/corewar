@@ -26,8 +26,8 @@ int	ft_fork(t_conv **ins, int total_bytes, t_label *labels)
 	(*ins)->hasencoding = 0;
 	(*ins)->n_params = 1;
 	(*ins)->index = total_bytes + 1;
-	(*ins)->dir_bytes = IND_SIZE;
-	(*ins)->indir_bytes = IND_SIZE;
+	(*ins)->dir_bytes = T_DIR;
+	(*ins)->indir_bytes = T_DIR;
 	ft_decoding(ins);
 	fill_params(ins, split, labels);
 	ft_destroy_2d((void**)split);

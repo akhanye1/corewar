@@ -92,5 +92,6 @@ int				ft_fork(t_conv **instruct, int total_bytes,t_label *lables);
 void			show_conv_before(char *line);
 void			show_buffer_after(t_conv *line);
 void			show_hex(t_conv *conv);
+void			remove_tabs(char *line);
 
 #endif

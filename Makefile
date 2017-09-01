@@ -41,7 +41,8 @@ SRC_ASM		=	main.c					\
 				ft_aff.c				\
 				ft_getbytes.c			\
 				ft_debug.c				\
-				numberconversion.c
+				numberconversion.c		\
+				ft_tabs.c
 
 #SRC_PUSHS	= 	push_s.c				\
 				dosort.c
