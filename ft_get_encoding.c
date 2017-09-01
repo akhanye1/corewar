@@ -34,6 +34,5 @@ unsigned char		ft_get_encoding(char *str)
 		j += 2;
 	}
 	ft_destroy_2d((void**)grid);
-	free(defix);
 	return (bintodec(ret));
 }
