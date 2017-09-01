@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 23:40:00 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/29 10:56:49 by pamashil         ###   ########.fr       */
+/*   Updated: 2017/09/01 08:52:50 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,14 @@ typedef struct		s_asm
 	t_conv		*line;
 	char		debug;
 	header_t	header;
+	char 		*fn;
 }					t_asm;
 
 typedef int (*mne_func)(t_conv **, int, t_label*);
 int				ft_fileok(char *filename);
 unsigned char	ft_get_opcode(char *str);
 void			write_to_cor(t_asm *data);
-int				convert_file(int fd, char debug);
+int				convert_file(int fd, char debug, char *fn);
 int				ft_get_dir(char *val);
 int				ft_get_ind(char *val);
 int				ft_get_reg(char *val);

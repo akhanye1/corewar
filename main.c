@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 21:04:42 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/31 14:39:48 by amatshiy         ###   ########.fr       */
+/*   Updated: 2017/09/01 08:47:07 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int				main(int ac, char **av)
 		ft_putstr("Usage: asm filename\nInvalid file\n");
 		return (0);
 	}
-	if (!convert_file(fd, debug))
+	if (!convert_file(fd, debug, av[1]))
 		ft_putstr("Error converting file\n");
 	close(fd);
 	return (0);

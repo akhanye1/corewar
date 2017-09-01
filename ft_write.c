@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 10:26:34 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/26 14:24:50 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/09/01 08:54:21 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void			write_to_cor(t_asm *data)
 	t_conv			*iter;
 
 	ft_bzero(byte, 5);
-	if ((lfd = open("test.cor", O_CREAT | O_WRONLY , S_IWUSR | S_IRUSR)) == -1)
+	if ((lfd = open(data->fn, O_CREAT | O_WRONLY , S_IWUSR | S_IRUSR)) == -1)
 	{
 		ft_putendl("File not created");
 		return ;
