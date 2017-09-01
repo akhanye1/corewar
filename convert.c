@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 10:30:52 by akhanye           #+#    #+#             */
-/*   Updated: 2017/09/01 08:52:30 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/09/01 11:18:30 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,7 @@ int				convert_file(int fd, char debug, char *fn)
 	}
 	iter = data.line;
 	create_all_lbls(&labels, &iter, total_bytes);
+	printf("%s\n", data.line->line);
 	iter = data.line;
 	fill_opcode_array(functs);
 	if (data.debug)
