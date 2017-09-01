@@ -21,12 +21,12 @@ int			get_bytes_in_line(const char *s, int bytes)
 	unsigned char	op;
 
 	index = -1;
-	sp = ft_strsplit(s, ' '); 
+	sp = ft_strsplit(s, ' ');
 	op = ft_get_opcode(sp[0]);
 	sp2 = ft_strsplit(ft_strstr(s, sp[0]) + ft_strlen(sp[0]), SEPARATOR_CHAR);
 	bytes = (op == 1 ? 5 : 1);
 	if (!(op == 1 || op == 9 || op == 12 || op == 15))
-		bytes++; 
+		bytes++;
 	while (op != 1 && sp2[++index])
 	{
 		trimmed = ft_strtrim(sp2[index]);
@@ -36,7 +36,6 @@ int			get_bytes_in_line(const char *s, int bytes)
 			bytes += (trimmed[0] == 'r' ? 1 : IND_SIZE);
 		free(trimmed);
 	}
-	printf("opcode(%d) :  %s is = %d\n",(int)op,s,bytes);
 	ft_destroy_2d((void**)sp);
 	ft_destroy_2d((void**)sp2);
 	return (bytes);
