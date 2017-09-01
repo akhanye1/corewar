@@ -14,10 +14,9 @@
 
 unsigned char		ft_get_encoding(char *str)
 {
-	int					i;
-	int					j;
-	char				**grid;
-	char				*defix;
+	int							i;
+	int							j;
+	char						**grid;
 	static char			ret[9];
 
 	i = -1;
@@ -26,8 +25,7 @@ unsigned char		ft_get_encoding(char *str)
 	while (i < 7)
 		ret[++i] = '0';
 	i = -1;
-	defix = ft_strdefix(str, ' ');
-	grid = ft_strsplit(defix, SEPARATOR_CHAR);
+	grid = ft_strsplit(ft_strdefix(str, ' '), SEPARATOR_CHAR);
 	while(grid[++i])
 	{
 		ret[j] = (grid[i][0] == 'r') ? '0' : '1';
