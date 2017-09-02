@@ -71,7 +71,8 @@ void			write_to_cor(t_asm *data)
 	iter = data->line;
 	while(iter != NULL)
 	{
-		write_conv_data(iter, lfd);
+		if (ft_strlen(iter->line) > 0)
+			write_conv_data(iter, lfd);
 		iter = iter->next;
 	}
 	ft_putstr(data->fn);
