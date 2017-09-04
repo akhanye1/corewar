@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 10:30:52 by akhanye           #+#    #+#             */
-/*   Updated: 2017/09/01 08:52:30 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/09/04 11:48:51 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,8 @@ int				convert_file(int fd, char debug, char *fn)
 			update_conv(&iter, total_bytes, labels, functs);
 			if (data.debug)
 				show_hex(iter);
-			total_bytes += iter->bytes;
+			if (ft_strlen(iter->line) > 0)
+				total_bytes += iter->bytes;
 		}
 		iter = iter->next;
 	}
