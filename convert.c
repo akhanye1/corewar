@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 10:30:52 by akhanye           #+#    #+#             */
-/*   Updated: 2017/09/04 11:48:51 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/09/04 16:48:51 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ int update_conv(t_conv **line, int total_bytes, t_label *labels, mne_func *funct
 	while(newstr[++i] != ' ' && newstr[i] != '\t')
 		;
 	mne = ft_strndup(newstr, i);
+	//this runs the appropiate functions 
 	functs[(int)ft_get_opcode(mne) - 1](line, total_bytes, labels);
 	free(mne);
 	return (0);
@@ -182,13 +183,14 @@ int				convert_file(int fd, char debug, char *fn)
 	fill_opcode_array(functs);
 	if (data.debug)
 		ft_putendl("Debug Information:");
-	while (iter)
+	while (iter) // it iterates the linked list
 	{
 		remove_tabs(iter->line);
 		if (data.debug && iter->line && ft_strlen(iter->line))
 			show_conv_before(iter->line);
 		if (iter->line && ft_strlen(iter->line))
 		{
+			//each structure is updated
 			update_conv(&iter, total_bytes, labels, functs);
 			if (data.debug)
 				show_hex(iter);

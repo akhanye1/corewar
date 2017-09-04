@@ -6,7 +6,7 @@
 /*   By: mmayibo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 09:32:02 by mmayibo           #+#    #+#             */
-/*   Updated: 2017/08/31 18:49:24 by amatshiy         ###   ########.fr       */
+/*   Updated: 2017/09/04 16:34:36 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int		ft_sti(t_conv **instruct, int total_bytes, t_label *labels)
 {
-	char	*defix;
-	char	**split;
+	char	*defix;// removes the mneumonic from the line
+	char	**split; // array of parameters
 	int		i;
 
 	if (!(defix = ft_strdefix((*instruct)->line, ' ')) ||
 			!(split = ft_strsplit(defix, ',')))
 		return (0);
 	if (!((*instruct)->opcode = ft_get_opcode("sti")))
-		return (0);
+		return ( 0);
 	(*instruct)->bytes = 2;
 	(*instruct)->hasencoding = 1;
 	(*instruct)->encoding = ft_get_encoding((*instruct)->line);
@@ -30,12 +30,12 @@ int		ft_sti(t_conv **instruct, int total_bytes, t_label *labels)
 	(*instruct)->index = total_bytes + 1;
 	(*instruct)->indir_bytes = IND_SIZE;
 	(*instruct)->dir_bytes = IND_SIZE;
-	ft_decoding(instruct);
-	fill_params(instruct, split, labels);
+	ft_decoding(instruct); //fills up the param_type ins the structure
+	fill_params(instruct, split, labels); //fills up the b_params and params
 	i = -1;
-	while (++i < (*instruct)->n_params)
+	while (++i < (*instruct)->n_params)//looping through b_param and adding bytes into instruct->bytes
 		(*instruct)->bytes += (*instruct)->b_param[i];
-	ft_destroy_2d((void**)split);
+	ft_destroy_2d((void**)split);//freeing split
 	free(defix);
 	return (1);
 }

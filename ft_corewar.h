@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 23:40:00 by akhanye           #+#    #+#             */
-/*   Updated: 2017/09/01 10:04:52 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/09/04 16:48:31 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,20 @@
 # include  <stdio.h>
 typedef struct		s_conv
 {
-	char			*line;
-	int				index;
-	int				bytes;
-	char			haslabel;
-	unsigned char	opcode;
-	char			hasencoding;
-	unsigned char	encoding;
-	char			n_params;
-	char			b_param[3];
-	int				param[3];
-	int				param_types[3];
-	int 			dir_bytes;
-	int				indir_bytes;
-	struct	s_conv	*next;
+	char			*line; //holds the raw line from the .s file
+	int				index; // position of the label in bytes 
+	int				bytes; // the total bytes contained in a line
+	char			haslabel; //check if the line contains a label
+	unsigned char	opcode; //gets the mneumonic number
+	char			hasencoding; //check if the line accepts encoding
+	unsigned char	encoding; //the calculated encoding byte
+	char			n_params; //the number of parameters an instruction can take
+	char			b_param[3]; //the numbers of bytes each parameter have
+	int				param[3]; //the actual value of each parameter
+	int				param_types[3]; //the types of each parameter e.g r = 1, dir = 2 and indir = 3
+	int 			dir_bytes; //The direct byte size
+	int				indir_bytes; //The indirect byte size e.g in sti it takes 2bytes 
+	struct	s_conv	*next; //the next linked structure 
 }					t_conv;
 
 typedef struct		s_label
