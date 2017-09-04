@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/24 23:24:44 by akhanye           #+#    #+#             */
-/*   Updated: 2017/07/02 01:11:43 by akhanye          ###   ########.fr       */
+/*   Updated: 2017/07/30 10:23:58 by akhanye          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,18 @@ static char		*get_line(char *buff, int *r, char **left, char *send)
 	return (temp);
 }
 
-static int		freeprogmem(char **line, char **left, int r)
+static int		freeprogmem(char **line, char **left, int r, int ronce)
 {
 	if (r == -1)
+	{
+		ft_memdel((void**)left);
 		return (-1);
-	if (r == 0 && ft_strlen((*left)) == 0 && ft_strlen((*line)) == 0)
+	}
+	if (r == 0 && ronce == 0)
+	{
+		ft_memdel((void**)left);
 		return (0);
+	}
 	if (ft_strlen((*line)) == 0)
 	{
 		free((*line));
@@ -54,16 +60,21 @@ static int		freeprogmem(char **line, char **left, int r)
 	return (r);
 }
 
-static char		*allocatemem(char **line, char **left)
+static int		allocatemem(char **line, char **left)
 {
-	if ((*line) != NULL && ((*left) != NULL))
+	if ((*left) != NULL)
+	{
 		ft_bzero((*line), ft_strlen((*line)));
+		return (0);
+	}
 	else
 	{
 		(*line) = ft_strnew(500000);
+		if ((*line) == NULL)
+			return (1);
 		(*left) = ft_strnew(1);
 	}
-	return ((*line));
+	return (0);
 }
 
 int				get_next_line(const int fd, char **line)
@@ -71,11 +82,13 @@ int				get_next_line(const int fd, char **line)
 	int				r;
 	static char		*left[1000];
 	char			buff[BUFF_SIZE + 1];
+	int				ronce;
 
 	if (BUFF_SIZE <= 0 || fd < 0 || line == NULL)
 		return (-1);
 	allocatemem(line, &left[fd]);
-	if (ft_strlen(left[fd]) > 0)
+	ronce = 0;
+	if (ft_strlen(left[fd]) > 0 && ronce++ < 500000)
 	{
 		ft_bzero((*line), ft_strlen((*line)));
 		(*line) = get_line(left[fd], &r, &left[fd], (*line));
@@ -83,12 +96,12 @@ int				get_next_line(const int fd, char **line)
 			return (1);
 		ft_bzero(left[fd], ft_strlen(left[fd]));
 	}
-	while ((r = read(fd, buff, BUFF_SIZE)) > 0)
+	while (((r = read(fd, buff, BUFF_SIZE)) > 0) && ronce++ < 5000000)
 	{
 		buff[r] = '\0';
 		(*line) = get_line(buff, &r, &left[fd], (*line));
 		if (r != -1)
 			return (1);
 	}
-	return (freeprogmem(line, &left[fd], r) == 1);
+	return (freeprogmem(line, &left[fd], r, ronce));
 }

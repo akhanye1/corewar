@@ -6,7 +6,7 @@
 /*   By: mmayibo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 13:30:27 by mmayibo           #+#    #+#             */
-/*   Updated: 2017/08/23 09:49:00 by akhanye          ###   ########.fr       */
+/*   Updated: 2017/08/29 10:55:51 by pamashil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ unsigned char		check_sec_instructs(char *str)
 {
 	unsigned char	opcode;
 
-	opcode = -1;
+	opcode = 0;
 	if (ft_strequ(str, "zjmp"))
 		opcode = 9;
 	else if (ft_strequ(str, "ldi"))
@@ -40,7 +40,7 @@ unsigned char		check_first_instructs(char *str)
 {
 	unsigned char	opcode;
 
-	opcode = -1;
+	opcode = 0;
 	if (ft_strequ(str, "live"))
 		opcode = 1;
 	else if (ft_strequ(str, "ld"))
@@ -58,6 +58,26 @@ unsigned char		check_first_instructs(char *str)
 	else if (ft_strequ(str, "xor"))
 		opcode = 8;
 	return (opcode);
+}
+
+void fill_opcode_array(mne_func *func_array)
+{
+	func_array[0] = ft_live;
+	func_array[1] = ft_ld;
+	func_array[2] = ft_st;
+	func_array[3] = ft_add;
+	func_array[4] = ft_sub;
+	func_array[5] = ft_and;
+	func_array[6] = ft_or;
+	func_array[7] = ft_xor;
+	func_array[8] = ft_zjmp;
+	func_array[9] = ft_ldi;
+	func_array[10] = ft_sti;
+	func_array[11] = ft_fork;
+	func_array[12] = ft_lld;
+	func_array[13] = ft_lldi;
+	func_array[14] = ft_lfork;
+	func_array[15] = ft_aff;
 }
 
 /**

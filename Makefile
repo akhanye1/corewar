@@ -6,7 +6,7 @@
 #    By: akhanye <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/30 10:25:20 by akhanye           #+#    #+#              #
-#    Updated: 2017/08/23 09:53:16 by akhanye          ###   ########.fr        #
+#    Updated: 2017/09/01 10:00:00 by mmayibo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,32 @@ SRC_ASM		=	main.c					\
 				ft_fileok.c				\
 				opcode.c				\
 				ft_write.c				\
-				convert.c
+				ft_decoding.c			\
+				ft_params.c				\
+				ft_get_encoding.c		\
+				ft_labels.c				\
+				convert.c				\
+				ft_lfork.c				\
+				ft_fork.c				\
+				ft_sti.c				\
+				ft_live.c				\
+				ft_and.c				\
+				ft_lldi.c				\
+				ft_or.c					\
+				ft_xor.c				\
+				ft_ld.c					\
+				ft_st.c					\
+				ft_add.c				\
+				ft_sub.c				\
+				ft_zjmp.c				\
+				ft_ldi.c				\
+				ft_lld.c				\
+				ft_aff.c				\
+				ft_getbytes.c			\
+				ft_debug.c				\
+				numberconversion.c		\
+				ft_tabs.c				\
+				ft_extentions.c
 
 #SRC_PUSHS	= 	push_s.c				\
 				dosort.c
@@ -46,7 +71,7 @@ SRC_ASM		=	main.c					\
 FLAGS	=  -Wall -Wextra -Werror
 
 LIBRARY =	-L libft -lft
-			
+
 all: $(NAME)
 
 $(NAME):

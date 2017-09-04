@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/29 12:27:08 by akhanye           #+#    #+#             */
-/*   Updated: 2017/08/22 07:24:37 by jngoma           ###   ########.fr       */
+/*   Updated: 2017/08/25 10:01:27 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,22 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+typedef struct		s_fd
+{
+    int				fd;
+    char			*store;
+    struct s_fd		*next;
+}					t_fd;
+
+char				*ft_strcuthead(char **s, int c);
+void				ft_addnbr(int **arr, int a);
+int					ft_abs(int a);
+int					get_next_line(const int fd, char **line);
+void				destroy_fd(const int fd, t_fd **lst);
+void				**ft_destroy_2d(void **grid);
+int					ft_items_in_grid(void **grid);
+int					ft_contains(char *s, char c);
+int					ft_contains_str(const char **argv, const char *str, int l);
 int					ft_htoi(const char *nptr);
 int					ft_getlines(char *filename);
 int					ft_abs(int num);
@@ -107,7 +123,6 @@ int					ft_inarray(char *search, char **array);
 int					ft_inarrayc(char search, char **array);
 void				ft_freestrsplit(char **str);
 char 				*ft_strdefix(char *str, int n);
-char 				*ft_strshrink(char *str);
 char 				*ft_strdesplit(char **grid, int c);
-
+char				*ft_strndup(const char *s, int len);
 #endif
