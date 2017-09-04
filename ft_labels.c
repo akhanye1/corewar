@@ -6,7 +6,7 @@
 /*   By: mmayibo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 13:45:46 by mmayibo           #+#    #+#             */
-/*   Updated: 2017/09/01 12:38:29 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/09/04 11:49:02 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,13 +117,12 @@ void		create_all_lbls(t_label **labels, t_conv **iter, int total_bytes)
 				*labels = create_label(&(*iter)->line, total_bytes);
 			else
 				add_label(labels, create_label(&(*iter)->line, total_bytes));
-			if (ft_strequ((*iter)->line, ""))
-				*iter = (*iter)->next;
 		}
 		trimmed = ft_strtrim((*iter)->line);
 		free((*iter)->line);
 		((*iter)->line) = trimmed;
-		total_bytes += get_bytes_in_line((*iter)->line, 0);
+		if (ft_strlen((*iter)->line) > 0)
+			total_bytes += get_bytes_in_line((*iter)->line, 0);
 		*iter = (*iter)->next;
 	}
 }
