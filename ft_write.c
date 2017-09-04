@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 10:26:34 by akhanye           #+#    #+#             */
-/*   Updated: 2017/09/01 10:04:49 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/09/04 10:31:15 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@ static void		write_numbers(unsigned char *line, int len, int fd)
 static void		write_binary(unsigned char *line, int len, int fd)
 {
 	write(fd, line, len);
+}
+
+static void		write_name_comment(header_t header)
+{
+	ft_putstr("\t");
+	ft_putendl(header.prog_name);
+	ft_putstr("\t");
+	ft_putendl(header.comment);
 }
 
 void 		write_conv_data(t_conv *instruct, int fd)
@@ -75,8 +83,7 @@ void			write_to_cor(t_asm *data)
 			write_conv_data(iter, lfd);
 		iter = iter->next;
 	}
-	ft_putstr(data->fn);
-	ft_putendl(" successfully converted");
+	write_name_comment(data->header);
 	free(fncor);
 	close(lfd);
 }
