@@ -6,7 +6,7 @@
 /*   By: mmayibo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 13:30:27 by mmayibo           #+#    #+#             */
-/*   Updated: 2017/08/29 10:55:51 by pamashil         ###   ########.fr       */
+/*   Updated: 2017/09/05 09:44:35 by jngoma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ unsigned char		check_first_instructs(char *str)
 	return (opcode);
 }
 
-void fill_opcode_array(mne_func *func_array)
+void				fill_opcode_array(mne_func *func_array)
 {
 	func_array[0] = ft_live;
 	func_array[1] = ft_ld;
