@@ -3,105 +3,115 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: gtshekel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/24 23:24:44 by akhanye           #+#    #+#             */
-/*   Updated: 2017/07/30 10:23:58 by akhanye          ###   ########.fr       */
+/*   Created: 2017/06/24 06:24:39 by gtshekel          #+#    #+#             */
+/*   Updated: 2017/08/24 14:09:45 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-static char		*get_line(char *buff, int *r, char **left, char *send)
+static t_fd		*lstnew(int fd)
 {
-	char	*temp;
-	char	ttemp[ft_strlen(buff)];
+	t_fd	*newlist;
 
-	temp = send;
-	*r = -1;
-	if (ft_strchr(buff, '\n') == NULL)
-		return (ft_strcat(temp, buff));
-	*r = ft_strchr(buff, '\n') - buff;
-	if (*r == 0)
-		ft_strcat(temp, "");
-	else
-		ft_strncat(temp, buff, *r);
-	if (buff[*r + 1] != '\0')
-	{
-		ft_strcpy(ttemp, buff + (*r + 1));
-		free((*left));
-		(*left) = ft_strdup(ttemp);
-	}
-	else
-		ft_bzero((*left), ft_strlen((*left)));
-	return (temp);
+	newlist = NULL;
+	if (!(newlist = (t_fd*)malloc(sizeof(t_fd))))
+		return (NULL);
+	newlist->fd = fd;
+	if (!(newlist->store = ft_strnew(BUFF_SIZE)))
+		return (NULL);
+	newlist->next = NULL;
+	return (newlist);
 }
 
-static int		freeprogmem(char **line, char **left, int r, int ronce)
+static t_fd		*getlist(t_fd **lst, int fd)
 {
-	if (r == -1)
+	t_fd	*ret;
+	t_fd	*tmp;
+
+	tmp = *lst;
+	ret = NULL;
+	while (tmp && tmp->fd != fd)
+		tmp = tmp->next;
+	if (!tmp)
 	{
-		ft_memdel((void**)left);
+		ret = lstnew(fd);
+		ret->next = *lst;
+		*lst = ret;
+		return (*lst);
+	}
+	return (tmp);
+}
+
+static int		read_into_storage(const int fd, char **store)
+{
+	char	*temp1;
+	char	*temp2;
+	int		bytes_read;
+
+	if (*store == NULL)
 		return (-1);
-	}
-	if (r == 0 && ronce == 0)
-	{
-		ft_memdel((void**)left);
-		return (0);
-	}
-	if (ft_strlen((*line)) == 0)
-	{
-		free((*line));
-		ft_memdel((void**)left);
-		return (0);
-	}
-	else if (r >= 0)
+	temp1 = ft_strdup(*store);
+	temp2 = ft_strnew(BUFF_SIZE);
+	if (!temp1 || !temp2)
+		return (-1);
+	bytes_read = read(fd, temp2, BUFF_SIZE);
+	if (*store)
+		free(*store);
+	if (!(*store = (char*)malloc(ft_strlen(*store) + bytes_read + 1)))
+		return (-1);
+	ft_bzero(*store, ft_strlen(temp1) + bytes_read + 1);
+	ft_strcpy(*store, temp1);
+	ft_strcat(*store, temp2);
+	free(temp1);
+	free(temp2);
+	if (bytes_read > 0)
 		return (1);
-	return (r);
+	return (bytes_read == 0 ? 0 : -1);
 }
 
-static int		allocatemem(char **line, char **left)
+static int		get_line(int fd, char **line, char **store, int bytes_read)
 {
-	if ((*left) != NULL)
-	{
-		ft_bzero((*line), ft_strlen((*line)));
-		return (0);
-	}
+	char	*tmp;
+	int		len;
+
+	while ((bytes_read > 0) && !(tmp = ft_strchr(*store, '\n')))
+		bytes_read = read_into_storage(fd, store);
+	if (ft_strlen(*store))
+		bytes_read = 1;
+	if (bytes_read == -1)
+		return (-1);
+	len = (tmp ? ft_strlen(*store) - ft_strlen(tmp) : ft_strlen(*store));
+	if (*line)
+		free(*line);
+	if (!(*line = ft_strnew(len)))
+		return (-1);
+	ft_strncpy(*line, *store, len);
+	if (tmp)
+		ft_strcuthead(&*store, len + 1);
 	else
-	{
-		(*line) = ft_strnew(500000);
-		if ((*line) == NULL)
-			return (1);
-		(*left) = ft_strnew(1);
-	}
-	return (0);
+		ft_strcuthead(&*store, len);
+	return (bytes_read);
 }
 
 int				get_next_line(const int fd, char **line)
 {
-	int				r;
-	static char		*left[1000];
-	char			buff[BUFF_SIZE + 1];
-	int				ronce;
+	static t_fd	*list;
+	t_fd		*item;
+	int			bytes_read;
 
-	if (BUFF_SIZE <= 0 || fd < 0 || line == NULL)
+	if (fd < 0)
 		return (-1);
-	allocatemem(line, &left[fd]);
-	ronce = 0;
-	if (ft_strlen(left[fd]) > 0 && ronce++ < 500000)
-	{
-		ft_bzero((*line), ft_strlen((*line)));
-		(*line) = get_line(left[fd], &r, &left[fd], (*line));
-		if (r != -1)
-			return (1);
-		ft_bzero(left[fd], ft_strlen(left[fd]));
-	}
-	while (((r = read(fd, buff, BUFF_SIZE)) > 0) && ronce++ < 5000000)
-	{
-		buff[r] = '\0';
-		(*line) = get_line(buff, &r, &left[fd], (*line));
-		if (r != -1)
-			return (1);
-	}
-	return (freeprogmem(line, &left[fd], r, ronce));
+	if (!list && !(list = lstnew(fd)))
+		return (-1);
+	item = getlist(&list, fd);
+	bytes_read = BUFF_SIZE;
+	bytes_read = get_line(fd, line, &item->store, bytes_read);
+	if (bytes_read > 0)
+		return (1);
+	if (bytes_read == 0)
+		destroy_fd(fd, &list);
+	return (bytes_read == 0 ? 0 : -1);
 }

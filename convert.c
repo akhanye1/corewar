@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 10:30:52 by akhanye           #+#    #+#             */
-/*   Updated: 2017/09/04 11:48:51 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/09/05 12:01:16 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ static int		get_file(int fd, t_asm *data)
 			free(line);
 			line = ft_strtrim(temp);
 			free(temp);
+			temp = NULL;
 		}
 		if (ft_strncmp(line, ".name", ft_strlen(".name")) == 0)
 			ft_strncpy(data->header.prog_name, copy_quote(line, &len), len);
@@ -123,6 +124,7 @@ static int		get_file(int fd, t_asm *data)
 		else if (ft_strlen(line) > 0 && line[0] != '#' && line[0] != '.')
 			add_line(&(data->line), line);
 		free(line);
+		line = NULL;
 	}
 	return (1);
 }
@@ -197,7 +199,9 @@ int				convert_file(int fd, char debug, char *fn)
 		}
 		iter = iter->next;
 	}
+	destroy_labels(labels);
 	data.header.prog_size = (unsigned int)count_all_bytes(&data);
 	write_to_cor(&data);
+	destroy_data(&data);
 	return (1);
 }

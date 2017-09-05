@@ -6,7 +6,7 @@
 #    By: akhanye <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/30 10:25:20 by akhanye           #+#    #+#              #
-#    Updated: 2017/09/01 10:00:00 by mmayibo          ###   ########.fr        #
+#    Updated: 2017/09/05 09:51:34 by mmayibo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,8 @@ SRC_ASM		=	main.c					\
 				ft_debug.c				\
 				numberconversion.c		\
 				ft_tabs.c				\
-				ft_extentions.c
+				ft_extentions.c			\
+				destruction.c
 
 #SRC_PUSHS	= 	push_s.c				\
 				dosort.c

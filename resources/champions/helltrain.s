@@ -1,10 +1,10 @@
-.name		"helltrain"
+.namefork    %:cc_spawn		"helltrain"
 .comment	"choo-choo, motherf*****s !"
 
 entry:
 	sti		r1, %:beegees_gen, %1
-	sti		r1, %:beegees, %1
-	sti		r1, %:cc_spawn, %1
+	sti r1, %:beegees, %1
+	sti r1, %:cc_spawn, %1
 	sti		r1, %:wall, %1
 	sti		r1, %:cc4, %1
 	sti		r1, %:cc4, %9
