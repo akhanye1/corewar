@@ -6,17 +6,17 @@
 /*   By: ssekese <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 12:16:27 by ssekese           #+#    #+#             */
-/*   Updated: 2017/08/31 18:25:15 by amatshiy         ###   ########.fr       */
+/*   Updated: 2017/09/05 09:31:44 by jngoma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_corewar.h"
 
-int     ft_ld(t_conv **instruct, int total_bytes, t_label *labels)
+int		ft_ld(t_conv **instruct, int total_bytes, t_label *labels)
 {
-	char    *defix;
-	char    **split;
-	int     i;
+	char	*defix;
+	char	**split;
+	int		i;
 
 	if (!(defix = ft_strdefix((*instruct)->line, ' ')) ||
 			!(split = ft_strsplit(defix, ',')))

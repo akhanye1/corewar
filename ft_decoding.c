@@ -6,13 +6,13 @@
 /*   By: jngoma <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 13:45:45 by jngoma            #+#    #+#             */
-/*   Updated: 2017/08/28 13:22:39 by gtshekel         ###   ########.fr       */
+/*   Updated: 2017/09/05 09:28:03 by jngoma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_corewar.h"
 
-void 		ft_decoding(t_conv **inst)
+void	ft_decoding(t_conv **inst)
 {
 	int					index;
 	int					j;
@@ -35,7 +35,7 @@ void 		ft_decoding(t_conv **inst)
 		if (!(trimmed = ft_strtrim(split[index])))
 			return ;
 		if (trimmed[0] == 'r')
-			(*inst)->param_types[++j] =  REG_CODE;
+			(*inst)->param_types[++j] = REG_CODE;
 		else
 			(*inst)->param_types[++j] = (trimmed[0] == DIRECT_CHAR) ? DIR_CODE : IND_CODE;
 		free(trimmed);
