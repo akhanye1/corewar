@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 10:30:52 by akhanye           #+#    #+#             */
-/*   Updated: 2017/09/05 09:52:55 by jngoma           ###   ########.fr       */
+/*   Updated: 2017/09/06 12:53:42 by gtshekel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,11 +116,19 @@ static int		get_file(int fd, t_asm *data)
 			line = ft_strtrim(temp);
 			free(temp);
 		}
+		if (ft_strchr(line, ';'))
+		{
+			temp = ft_strnew(ft_strlen(line));
+			ft_strncpy(temp, line, (ft_strchr(line, ';') - line));
+			free(line);
+			line = ft_strtrim(temp);
+			free(temp);
+		}
 		if (ft_strncmp(line, ".name", ft_strlen(".name")) == 0)
 			ft_strncpy(data->header.prog_name, copy_quote(line, &len), len);
 		else if (ft_strncmp(line, ".comment", ft_strlen(".comment")) == 0)
 			ft_strncpy(data->header.comment, copy_quote(line, &len), len);
-		else if (ft_strlen(line) > 0 && line[0] != '#' && line[0] != '.')
+		else if (ft_strlen(line) > 0 && line[0] != ';'  && line[0] != '#' && line[0] != '.')
 			add_line(&(data->line), line);
 		free(line);
 	}
