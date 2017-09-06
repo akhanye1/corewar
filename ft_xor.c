@@ -6,7 +6,7 @@
 /*   By: jbadenho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/25 14:15:57 by jbadenho          #+#    #+#             */
-/*   Updated: 2017/08/29 09:02:18 by gtshekel         ###   ########.fr       */
+/*   Updated: 2017/09/05 09:36:48 by jngoma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_xor(t_conv **ins, int total_bytes, t_label *labels)
 	(*ins)->n_params = 3;
 	(*ins)->index = total_bytes + 1;
 	(*ins)->indir_bytes = IND_SIZE;
-	(*ins)->dir_bytes =  DIR_SIZE;
+	(*ins)->dir_bytes = DIR_SIZE;
 	ft_decoding(ins);
 	fill_params(ins, split, labels);
 	i = -1;

@@ -6,7 +6,7 @@
 /*   By: jngoma <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 18:51:44 by jngoma            #+#    #+#             */
-/*   Updated: 2017/09/05 12:42:06 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/09/06 10:04:27 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ char	*ft_strdefix(char *str, int c)
 
 	i = -1;
 	j = -1;
-	while (str[++i] && str[i] != c);
+	while (str[++i] && str[i] != c)
+		;
 	len = spaceless_len(str);
 	newstr = ft_strnew((unsigned int)len - i);
 	while (str[++i] != '\0')

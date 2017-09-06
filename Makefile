@@ -6,7 +6,7 @@
 #    By: akhanye <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/30 10:25:20 by akhanye           #+#    #+#              #
-#    Updated: 2017/09/05 09:51:34 by mmayibo          ###   ########.fr        #
+#    Updated: 2017/09/06 10:10:11 by mmayibo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,7 +77,7 @@ all: $(NAME)
 
 $(NAME):
 	make -C libft/ fclean && make -C libft/
-	clang $(FLAGS) $(SRC_ASM) $(LIBRARY) -o $(ASSEMBLER)
+	clang -g $(FLAGS) $(SRC_ASM) $(LIBRARY) -o $(ASSEMBLER)
 	#clang $(FLAGS) -g $(SRC_ALL) $(SRC_PUSHS) $(LIBRARY) -o $(PUSH_SWAP)
 
 

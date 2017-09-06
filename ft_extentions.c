@@ -6,7 +6,7 @@
 /*   By: mmayibo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/01 09:31:54 by mmayibo           #+#    #+#             */
-/*   Updated: 2017/09/01 10:04:46 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/09/05 09:28:44 by jngoma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char		*get_fn_with_ext(char *fn)
 	index = 0;
 	if (!(end = ft_strrchr(fn, '.')))
 		return (NULL);
-	while(&fn[index] != end)
+	while (&fn[index] != end)
 		index++;
 	if (!(name = ft_strndup(fn, index)))
 		return (NULL);
