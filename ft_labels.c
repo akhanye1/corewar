@@ -6,7 +6,7 @@
 /*   By: mmayibo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/24 13:45:46 by mmayibo           #+#    #+#             */
-/*   Updated: 2017/09/04 11:49:02 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/09/05 12:04:09 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int			ft_contains_label(char *line)
 		ft_destroy_2d((void **)split);
 		return (1);
 	}
+	ft_destroy_2d((void **)split);
 	return (0);
 }
 

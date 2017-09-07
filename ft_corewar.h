@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 23:40:00 by akhanye           #+#    #+#             */
-/*   Updated: 2017/09/01 10:04:52 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/09/05 10:14:35 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,6 @@ void			show_buffer_after(t_conv *line);
 void			show_hex(t_conv *conv);
 void			remove_tabs(char *line);
 char			*get_fn_cor(char *fn);
+void			destroy_labels(t_label *labels);
+void			destroy_data(t_asm *data);
 #endif

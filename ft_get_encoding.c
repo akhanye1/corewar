@@ -6,7 +6,7 @@
 /*   By: jngoma <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 10:34:00 by jngoma            #+#    #+#             */
-/*   Updated: 2017/09/05 09:30:33 by jngoma           ###   ########.fr       */
+/*   Updated: 2017/09/06 10:06:23 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ unsigned char		ft_get_encoding(char *str)
 	int				j;
 	char			**grid;
 	static char		ret[9];
+	char 			*defix;
 
 	i = -1;
 	j = 0;
@@ -25,8 +26,9 @@ unsigned char		ft_get_encoding(char *str)
 	while (i < 7)
 		ret[++i] = '0';
 	i = -1;
-	grid = ft_strsplit(ft_strdefix(str, ' '), SEPARATOR_CHAR);
-	whilem (grid[++i])
+	defix = ft_strdefix(str, ' ');
+	grid = ft_strsplit(defix, SEPARATOR_CHAR);
+	while (grid[++i])
 	{
 		ret[j] = (grid[i][0] == 'r') ? '0' : '1';
 		ret[j + 1] = (grid[i][0] == 'r') ? '1' : 0;
@@ -34,5 +36,6 @@ unsigned char		ft_get_encoding(char *str)
 		j += 2;
 	}
 	ft_destroy_2d((void**)grid);
+	free(defix);
 	return (bintodec(ret));
 }
