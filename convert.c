@@ -6,15 +6,15 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 10:30:52 by akhanye           #+#    #+#             */
-/*   Updated: 2017/09/04 16:48:51 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/09/07 13:56:06 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_corewar.h"
 
-static char		*copy_quote(char *line, int *len)
+static char		*copy_quote(char *line, int *len)// The purpose is to convert .s file into binary file
 {
-	int i;
+	int i; 
 	int start;
 	int l;
 
@@ -93,8 +93,8 @@ static int	count_all_bytes(t_asm *data)
 
 static int		get_file(int fd, t_asm *data)
 {
-	char 	*line;
-	int		len;
+	char 	*line;// Stores info about a line read from .s file
+	int		len;// 
 	char	*totrim;
 	char	*temp;
 
@@ -151,20 +151,18 @@ int update_conv(t_conv **line, int total_bytes, t_label *labels, mne_func *funct
 
 int				convert_file(int fd, char debug, char *fn)
 {
-	char		*line;
-	t_asm		data;
-	t_label		*labels;
-	int			total_bytes;
-	t_conv 		*iter;
-	mne_func	functs[16];
+	t_asm		data; //Stores information about the file.Example : The header,linked list of the lines and the file name.
+	t_label		/**labels;*/
+	int			total_bytes;//Stores the total bytes that are contained in the .core file
+	t_conv 		*iter;// Its a struct that stores info about the iterration of linked list 
+	mne_func	functs[16];//It holds all the pointers to the mneunonic e.g sti, add, st 
 
-	total_bytes = 0;
-	line = NULL;
-	data.fn = fn;
+	total_bytes = 0;// Total from our functions e.g sti. st, add
+	data.fn = fn;// Filename
 	data.line = NULL;
 	data.debug = debug;
 	labels = NULL;
-	if (!get_file(fd, &data))
+	if (!get_file(fd, &data))// Get next line....Starting to read from a .s file
 		return (0);
 	if (data.debug)
 	{

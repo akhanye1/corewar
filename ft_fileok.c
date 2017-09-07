@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/17 10:41:57 by akhanye           #+#    #+#             */
-/*   Updated: 2017/09/05 16:08:30 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/09/07 12:37:30 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  ** make sure the test can be completed
  ** 
  ** it will only check if the file exsist and if it is a .s file for now.
- **/
+ ** To be able convert the file*/
 
 int		ft_fileok(char *filename)
 {
