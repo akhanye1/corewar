@@ -6,7 +6,7 @@
 /*   By: akhanye <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 10:30:52 by akhanye           #+#    #+#             */
-/*   Updated: 2017/09/06 10:15:01 by mmayibo          ###   ########.fr       */
+/*   Updated: 2017/09/07 09:33:35 by mmayibo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char		*copy_quote(char *line, int *len)
 	int l;
 
 	i = -1;
-	while (line[++i] != '"')
+	while(line[++i] != '"')
 		;
 	start = i + 1;
 	l = 0;
@@ -36,7 +36,7 @@ static void		init_struct(t_conv *temp, char *line)
 	i = -1;
 	temp->line = ft_strdup(line);
 	temp->index = 0;
-	temp->bytes = 0;
+	temp->bytes	= 0;
 	temp->haslabel = 0;
 	temp->opcode = 0;
 	temp->hasencoding = 0;
@@ -74,7 +74,7 @@ static int		add_line(t_conv **data, char *line)
 	return (1);
 }
 
-static int		count_all_bytes(t_asm *data)
+static int	count_all_bytes(t_asm *data)
 {
 	int		b;
 	t_conv	*iter;
@@ -93,7 +93,7 @@ static int		count_all_bytes(t_asm *data)
 
 static int		get_file(int fd, t_asm *data)
 {
-	char	*line;
+	char 	*line;
 	int		len;
 	char	*totrim;
 	char	*temp;
@@ -115,7 +115,6 @@ static int		get_file(int fd, t_asm *data)
 			free(line);
 			line = ft_strtrim(temp);
 			free(temp);
-			temp = NULL;
 		}
 		if (ft_strncmp(line, ".name", ft_strlen(".name")) == 0)
 			ft_strncpy(data->header.prog_name, copy_quote(line, &len), len);
@@ -124,17 +123,16 @@ static int		get_file(int fd, t_asm *data)
 		else if (ft_strlen(line) > 0 && line[0] != '#' && line[0] != '.')
 			add_line(&(data->line), line);
 		free(line);
-		line = NULL;
 	}
 	free(totrim);
 	return (1);
 }
 
-int 			update_conv(t_conv **line, int total_bytes, t_label *labels, mne_func *functs)
+int update_conv(t_conv **line, int total_bytes, t_label *labels, mne_func *functs)
 {
 	char		*newstr;
-	char		*mne;
-	int			i;
+	char 		*mne;
+	int 		i;
 
 	if (!(newstr = ft_strtrim((*line)->line)))
 		return (0);
@@ -142,12 +140,13 @@ int 			update_conv(t_conv **line, int total_bytes, t_label *labels, mne_func *fu
 		free((*line)->line);
 	i = -1;
 	(*line)->line = newstr;
-	while (newstr[++i] != ' ' && newstr[i] != '\t')
+	while(newstr[++i] != ' ' && newstr[i] != '\t')
 		;
 	mne = ft_strndup(newstr, i);
 	functs[(int)ft_get_opcode(mne) - 1](line, total_bytes, labels);
 	free(mne);
 	return (0);
+
 }
 
 int				convert_file(int fd, char debug, char *fn)
@@ -156,7 +155,7 @@ int				convert_file(int fd, char debug, char *fn)
 	t_asm		data;
 	t_label		*labels;
 	int			total_bytes;
-	t_conv		*iter;
+	t_conv 		*iter;
 	mne_func	functs[16];
 
 	total_bytes = 0;
@@ -199,9 +198,7 @@ int				convert_file(int fd, char debug, char *fn)
 		}
 		iter = iter->next;
 	}
-	destroy_labels(labels);
 	data.header.prog_size = (unsigned int)count_all_bytes(&data);
 	write_to_cor(&data);
-	destroy_data(&data);
 	return (1);
 }
